@@ -1,53 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Courses Enrollment</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif; 
-            text-align: center; 
-            padding: 50px; 
-            line-height: 1.6;
-        }
-        .button {
-            display: inline-block; 
-            padding: 15px 30px; 
-            margin: 10px; 
-            color: white; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            max-width: 300px;
-            width: 80%;
-        }
-        .blue { background: #007BFF; }
-        .green { background: #28A745; }
-        .yellow { background: #FFC107; color: black; }
-        @media (min-width: 700px) {
-            .button { width: auto; }
-        }
-        .course {
-            margin-bottom: 30px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Courses Enrollment</title>
+  <!-- PayPal SDK - only once per page -->
+  <script 
+    src="https://www.paypal.com/sdk/js?client-id=BAAWdpxE1NLrXYCiwgYkb3ZCtOVAGtHQSjn3TvJnfa64SO2BtXXvtltqBpjsaXH1WYGQhDmvIo6N_n0-fs&components=hosted-buttons&disable-funding=venmo&currency=USD">
+  </script>
 </head>
-<body>
-    <h1>Join Our AI Courses</h1>
-    <p>Select a course below to enroll:</p>
-    <div style="margin-top: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
-        <div class="course">
-            <a href="https://forms.gle/M1P8Zz2ghxKYFdDX7" class="button blue">AI for Everyone</a>
-            <p>A beginner-friendly course introducing AI concepts, tools, and real-world applications — no coding required.</p>
-        </div>
-        <div class="course">
-            <a href="https://forms.gle/H7fMsERAEoyVttkN6" class="button green">AI Engineering Bootcamp</a>
-            <p>Hands-on training to build real AI systems and applications — perfect for future AI engineers.</p>
-        </div>
-        <div class="course">
-            <a href="https://forms.gle/7F765BztcLF4dqTF7" class="button yellow">Bundle Offer (Save $100)</a>
-            <p>Get both courses at a discounted price — start with fundamentals, then master AI engineering.</p>
-        </div>
-    </div>
+<body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+
+  <h1>Join Our AI Courses</h1>
+  <p>Select a course below to enroll securely via PayPal:</p>
+
+  <div style="margin-top: 40px;">
+    <!-- AI for Everyone ($99) -->
+    <h2>AI for Everyone — $99</h2>
+    <div id="paypal-container-EU93KRXX5TSYA"></div>
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "EU93KRXX5TSYA",
+      }).render("#paypal-container-EU93KRXX5TSYA");
+    </script>
+
+    <!-- AI Engineering Bootcamp ($199) -->
+    <h2>AI Engineering Bootcamp — $199</h2>
+    <div id="paypal-container-TPPRY2WFGDPJY"></div>
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "TPPRY2WFGDPJY",
+      }).render("#paypal-container-TPPRY2WFGDPJY");
+    </script>
+
+    <!-- AI Course Bundle Offer ($299 → $279) -->
+    <h2>AI Course Bundle Offer ($299 → $279)</h2>
+    <div id="paypal-container-4B44NAQ2NQAAS"></div>
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "4B44NAQ2NQAAS",
+      }).render("#paypal-container-4B44NAQ2NQAAS");
+    </script>
+  </div>
+
 </body>
 </html>
