@@ -8,40 +8,71 @@
     <script 
       src="https://www.paypal.com/sdk/js?client-id=BAAWdpxE1NLrXYCiwgYkb3ZCtOVAGtHQSjn3TvJnfa64SO2BtXXvtltqBpjsaXH1WYGQhDmvIo6N_n0-fs&components=hosted-buttons&disable-funding=venmo&currency=USD">
     </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 50px;
+            margin: 0;
+        }
+        .courses {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .course-box {
+            flex: 1 1 300px;
+            max-width: 320px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .course-box h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+<body>
     <h1>Join Our AI Courses</h1>
     <p>Select a course below to enroll and pay securely with PayPal:</p>
 
-    <div style="margin-top: 40px;">
-        <h2>AI for Everyone — $99</h2>
-        <div id="paypal-container-EU93KRXX5TSYA"></div>
-        <script>
-          paypal.HostedButtons({
-            hostedButtonId: "EU93KRXX5TSYA",
-          }).render("#paypal-container-EU93KRXX5TSYA");
-        </script>
-    </div>
+    <div class="courses">
+        <!-- Course 1 -->
+        <div class="course-box">
+            <h2>AI for Everyone — $99</h2>
+            <div id="paypal-container-EU93KRXX5TSYA"></div>
+            <script>
+              paypal.HostedButtons({
+                hostedButtonId: "EU93KRXX5TSYA",
+              }).render("#paypal-container-EU93KRXX5TSYA");
+            </script>
+        </div>
 
-    <div style="margin-top: 60px;">
-        <h2>AI Engineering Bootcamp — $199</h2>
-        <div id="paypal-container-TPPRY2WFGDPJY"></div>
-        <script>
-          paypal.HostedButtons({
-            hostedButtonId: "TPPRY2WFGDPJY",
-          }).render("#paypal-container-TPPRY2WFGDPJY");
-        </script>
-    </div>
+        <!-- Course 2 -->
+        <div class="course-box">
+            <h2>AI Engineering Bootcamp — $199</h2>
+            <div id="paypal-container-TPPRY2WFGDPJY"></div>
+            <script>
+              paypal.HostedButtons({
+                hostedButtonId: "TPPRY2WFGDPJY",
+              }).render("#paypal-container-TPPRY2WFGDPJY");
+            </script>
+        </div>
 
-    <div style="margin-top: 60px;">
-        <h2>AI Course Bundle Offer ($299 → $279)</h2>
-        <div id="paypal-container-4B44NAQ2NQAAS"></div>
-        <script>
-          paypal.HostedButtons({
-            hostedButtonId: "4B44NAQ2NQAAS",
-          }).render("#paypal-container-4B44NAQ2NQAAS");
-        </script>
+        <!-- Course 3 -->
+        <div class="course-box">
+            <h2>AI Course Bundle Offer ($299 → $279)</h2>
+            <div id="paypal-container-4B44NAQ2NQAAS"></div>
+            <script>
+              paypal.HostedButtons({
+                hostedButtonId: "4B44NAQ2NQAAS",
+              }).render("#paypal-container-4B44NAQ2NQAAS");
+            </script>
+        </div>
     </div>
-
 </body>
 </html>
