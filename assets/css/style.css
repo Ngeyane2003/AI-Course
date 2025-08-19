@@ -1,0 +1,17 @@
+body { font-family: Arial, sans-serif; margin:0; padding:0; line-height:1.6; color:#333;}
+header.nav { display:flex; justify-content:space-between; align-items:center; padding:20px; background:#111; color:#fff;}
+header.nav a { color:#fff; margin:0 10px; text-decoration:none; }
+header.nav .btn { background:#ff9800; padding:8px 16px; border-radius:4px;}
+.hero { text-align:center; padding:60px 20px; background:#f4f4f4;}
+.hero .btn { background:#007bff; color:#fff; padding:10px 20px; margin:5px; display:inline-block; border-radius:4px; text-decoration:none;}
+.hero .btn.secondary { background:#555;}
+section { padding:40px 20px;}
+section h2 { text-align:center; margin-bottom:20px;}
+.cards { display:flex; flex-wrap:wrap; justify-content:center; gap:20px;}
+.card { flex:1 1 250px; border:1px solid #ddd; padding:20px; border-radius:4px; text-align:center;}
+.btn { background:#007bff; color:#fff; padding:10px 20px; text-decoration:none; border-radius:4px; display:inline-block;}
+.btn.secondary { background:#555; color:#fff;}
+footer { text-align:center; padding:20px; background:#111; color:#fff; margin-top:20px;}
+ul { max-width:800px; margin:0 auto; padding:0; list-style:disc inside;}
+.hero-buttons { margin:20px 0;}
+.facts { font-size:0.9rem; margin-top:10px;}
