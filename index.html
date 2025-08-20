@@ -1,113 +1,442 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" id="top">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Course Hub</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Learn & Earn AI — Courses & Bundle</title>
+  <meta name="description" content="Beginner-friendly AI courses with a beautiful landing. Buy individual courses or the AI bundle (AI for Everyone + AI Engineering).">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230b5cff'/><text x='50' y='60' text-anchor='middle' font-size='56' font-family='Arial' fill='white'>AI</text></svg>">
+
+  <!-- ====== Inline Styles (same premium look) ====== -->
+  <style>
+    :root{
+      --bg: #0b0f19;
+      --bg-alt: #0e1424;
+      --text: #e8eefc;
+      --muted: #b6c2e2;
+      --card: #11182a;
+      --accent: #7aa2ff;
+      --accent-2: #3b82f6;
+      --ring: rgba(122,162,255,.5);
+      --ok: #16a34a;
+      --border: rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+      color:var(--text);
+      background: linear-gradient(180deg, var(--bg) 0%, #0c1222 100%);
+      line-height:1.6;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    .section{padding:72px 0}
+    .section.alt{background:var(--bg-alt)}
+    .site-header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(11,15,25,.7);backdrop-filter: blur(8px);
+      border-bottom:1px solid var(--border)
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
+    .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:700}
+    .brand-text{letter-spacing:.3px}
+    .brand-mark{font-size:22px}
+    .nav-links{display:flex;align-items:center;gap:18px}
+    .nav-links a{color:var(--muted);text-decoration:none}
+    .nav-links a:hover{color:var(--text)}
+    .nav-toggle{display:none;background:none;border:1px solid rgba(255,255,255,.15);color:var(--text);padding:8px 10px;border-radius:8px;font-size:18px}
+
+    .hero{padding:72px 0 32px;border-bottom:1px solid var(--border)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .hero-copy h1{font-size:42px;line-height:1.15;margin:0 0 8px}
+    .lead{font-size:18px;color:var(--muted);margin:0 0 18px}
+    .cta{display:flex;gap:12px;margin:20px 0;flex-wrap:wrap}
+    .bullets{margin:16px 0 0;padding-left:20px;color:var(--muted)}
+    .bullets li{margin:6px 0}
+    .btn{
+      background:var(--accent-2);color:white;padding:12px 18px;border-radius:10px;
+      text-decoration:none;display:inline-block;border:1px solid rgba(255,255,255,.1)
+    }
+    .btn:hover{filter:brightness(1.05)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--text)}
+    .btn.small{padding:8px 12px}
+    .btn.block{width:100%;text-align:center}
+
+    .pill-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .pill{background:rgba(122,162,255,.12);color:var(--text);padding:8px 12px;border:1px solid rgba(122,162,255,.2);border-radius:999px;font-size:14px}
+
+    .hero-card{
+      position:relative;min-height:260px;border-radius:16px;
+      background:radial-gradient(1000px 260px at 10% -10%, rgba(122,162,255,.35), transparent 40%),
+                 linear-gradient(180deg, var(--card), #0f1a33);
+      border:1px solid var(--border);box-shadow: 0 10px 40px rgba(0,0,0,.3);overflow:hidden
+    }
+    .mesh{position:absolute;inset:0;background:
+        radial-gradient(100px 80px at 20% 30%, rgba(255,255,255,.06), transparent 40%),
+        radial-gradient(120px 90px at 60% 40%, rgba(255,255,255,.05), transparent 40%),
+        radial-gradient(160px 120px at 80% 80%, rgba(122,162,255,.08), transparent 45%)}
+    .badge{position:absolute;top:14px;right:14px;background:rgba(22,163,74,.18);border:1px solid rgba(22,163,74,.35);color:#bbf7d0;padding:6px 10px;border-radius:999px;font-size:13px}
+
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
+    .checklist{margin:0;padding-left:22px}
+    .checklist li{margin:6px 0}
+    .fine{color:var(--muted);font-size:14px}
+
+    .syllabus{display:grid;grid-template-columns:repeat(4, 1fr);gap:16px;margin-top:18px}
+    .sy-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
+    .sy-card h3{margin:0 0 6px;font-size:18px}
+
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+    .price-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
+    .price-card .price{font-size:32px;margin:6px 0 8px}
+    .price-card.highlight{outline:2px solid var(--accent);box-shadow:0 10px 30px rgba(122,162,255,.2)}
+
+    .course-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .course-meta{display:flex;gap:10px;flex-wrap:wrap}
+    .tag{font-size:12px;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 10px;color:var(--muted)}
+
+    label{display:block;margin:10px 0}
+    label span{display:block;margin-bottom:6px;font-weight:600}
+    input,select,textarea{width:100%;padding:12px 12px;border-radius:10px;background:#0c1224;border:1px solid rgba(255,255,255,.15);color:var(--text)}
+    input:focus,select:focus,textarea:focus{outline:2px solid var(--ring);border-color:transparent}
+
+    .steps{margin:0 0 6px;padding-left:22px}
+
+    .site-footer{padding:32px 0;border-top:1px solid var(--border);background:#0b0f19}
+    .footer-grid{display:flex;align-items:center;justify-content:space-between;gap:18px}
+    footer nav a{color:var(--muted);text-decoration:none;margin-right:12px}
+    footer nav a:hover{color:var(--text)}
+
+    /* Helpers */
+    .center{text-align:center}
+    .mt-12{margin-top:12px}
+    .mt-18{margin-top:18px}
+    .mb-0{margin-bottom:0}
+
+    @media (max-width: 1000px){ .grid{grid-template-columns:1fr} }
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr}
+      .two-col{grid-template-columns:1fr}
+      .syllabus{grid-template-columns:repeat(2,1fr)}
+      .price-grid{grid-template-columns:1fr}
+      .nav-links{display:none;flex-direction:column;position:absolute;right:20px;top:64px;background:var(--bg-alt);padding:12px;border-radius:12px;border:1px solid var(--border)}
+      .nav-links.open{display:flex}
+      .nav-toggle{display:inline-block}
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f8fbff; --bg-alt:#eef5ff; --text:#0b1220; --muted:#3a4a66; --card:#ffffff; --accent:#2b59ff; --accent-2:#2b59ff; --ring:rgba(43,89,255,.35); --border: rgba(0,0,0,.06)
+      }
+      body{background:linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%)}
+      .site-header{background:rgba(255,255,255,.7)}
+      .hero{border-bottom:1px solid var(--border)}
+      .price-card.highlight{box-shadow:0 10px 30px rgba(43,89,255,.2)}
+    }
+  </style>
+
+  <!-- PayPal SDK (load once) -->
+  <script src="https://www.paypal.com/sdk/js?client-id=BAAWdpxE1NLrXYCiwgYkb3ZCtOVAGtHQSjn3TvJnfa64SO2BtXXvtltqBpjsaXH1WYGQhDmvIo6N_n0-fs&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
 <body>
-  <header>
-    <div class="logo">🤖 Learn & Earn AI</div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#syllabus">Syllabus</a>
-      <a href="#projects">Projects</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a href="#buy">Buy</a>
-    </nav>
+  <!-- ====== Header / Nav ====== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Homepage">
+        <span class="brand-mark" aria-hidden="true">🤖</span>
+        <span class="brand-text">Learn & Earn AI</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#everyone">AI for Everyone</a>
+        <a href="#engineering">AI Engineering</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn small" href="#pricing">Buy</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="hero">
-    <h1>Beginner AI Course: Learn & Earn</h1>
-    <p>No coding required. Understand AI, build projects, and learn to monetize your skills.</p>
-    <div class="hero-buttons">
-      <a href="#buy" class="btn">Buy Now</a>
-      <a href="#syllabus" class="btn secondary">See Syllabus</a>
+  <main>
+    <!-- ====== Hero ====== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>Beginner AI Course: <span class="accent">Learn&nbsp;&nbsp;&&nbsp;&nbsp;Earn</span></h1>
+          <p class="lead">No coding required. Understand AI, build simple projects, and learn real ways to make money with AI tools.</p>
+          <div class="cta">
+            <a class="btn" href="#pricing">Buy Now</a>
+            <a class="btn ghost" href="#syllabus">See Syllabus</a>
+          </div>
+          <ul class="bullets">
+            <li>8 weeks · 2 lessons/week · 90 mins</li>
+            <li>Live or self-paced · fits classrooms & online</li>
+            <li>Hands-on projects · real monetization ideas</li>
+          </ul>
+        </div>
+        <div class="hero-card" role="img" aria-label="Abstract AI illustration">
+          <div class="mesh"></div>
+          <div class="badge">No Coding Needed</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== About ====== -->
+    <section id="about" class="section">
+      <div class="container two-col">
+        <div>
+          <h2>What you'll learn</h2>
+          <p>We make AI simple and practical: how it works, where it’s used, and how to turn your new skills into value. Every week includes a mini-project. By the end, you’ll ship a small AI project you can showcase or sell.</p>
+          <div class="pill-grid">
+            <span class="pill">AI fundamentals</span>
+            <span class="pill">Hands-on demos</span>
+            <span class="pill">Prompting skills</span>
+            <span class="pill">Ethics & safety</span>
+            <span class="pill">Portfolio project</span>
+            <span class="pill">Monetization tips</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Week 1 Sample</h3>
+          <ul class="checklist">
+            <li>What AI is (and isn’t)</li>
+            <li>AI in daily life</li>
+            <li>How machines learn (no math)</li>
+            <li>Interactive: “Spot the AI”</li>
+          </ul>
+          <p class="fine">Next week: train a tiny model with Google Teachable Machine.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Syllabus ====== -->
+    <section id="syllabus" class="section alt">
+      <div class="container">
+        <h2>8-Week Syllabus</h2>
+        <div class="syllabus">
+          <article class="sy-card"><h3>Week 1 · Intro to AI</h3><p>AI basics, everyday examples, learning from data.</p></article>
+          <article class="sy-card"><h3>Week 2 · Data & Demos</h3><p>Data quality; build your first model (no code).</p></article>
+          <article class="sy-card"><h3>Week 3 · ML Concepts</h3><p>Patterns, supervised vs. unsupervised, Project #1.</p></article>
+          <article class="sy-card"><h3>Week 4 · Neural Nets</h3><p>Layers & intuition, visualizers, prompts.</p></article>
+          <article class="sy-card"><h3>Week 5 · Text & Images</h3><p>NLP with ChatGPT & computer vision basics.</p></article>
+          <article class="sy-card"><h3>Week 6 · Ethics & Safety</h3><p>Bias, responsible use, guardrails.</p></article>
+          <article class="sy-card"><h3>Week 7 · Capstone Build</h3><p>Choose: chatbot, classifier, or generator.</p></article>
+          <article class="sy-card"><h3>Week 8 · Showcase & Next</h3><p>Presentations, feedback, next steps.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Course: AI for Everyone ====== -->
+    <section id="everyone" class="section">
+      <div class="container">
+        <div class="course-header">
+          <h2 class="mb-0">AI for Everyone</h2>
+          <div class="course-meta">
+            <span class="tag">Beginner</span>
+            <span class="tag">Self-paced or Live</span>
+            <span class="tag">No Code</span>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <h3>Overview</h3>
+            <p>Understand what AI is, where it’s used, and how to put it to work. Perfect for non-technical learners who want confidence with today’s tools.</p>
+            <ul class="checklist">
+              <li>Everyday AI examples you already use</li>
+              <li>Hands-on demos with free tools</li>
+              <li>Prompting skills that save time</li>
+              <li>Mini-project you can showcase</li>
+            </ul>
+            <div class="mt-18">
+              <div id="paypal-container-4B44NAQ2NQAAS"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>What you'll build</h3>
+            <ul class="bullets">
+              <li><strong>Chatbot FAQ</strong> for a local shop</li>
+              <li><strong>Content toolkit</strong> for blogs & social</li>
+              <li><strong>AI research assistant</strong> workflow</li>
+            </ul>
+            <p class="fine">Includes templates + step-by-step guides.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Course: AI Engineering ====== -->
+    <section id="engineering" class="section alt">
+      <div class="container">
+        <div class="course-header">
+          <h2 class="mb-0">AI Engineering</h2>
+          <div class="course-meta">
+            <span class="tag">Intermediate</span>
+            <span class="tag">Build & Deploy</span>
+            <span class="tag">APIs & Workflows</span>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <h3>Overview</h3>
+            <p>Go from user to builder. Learn how to design AI features, wire up APIs, evaluate outputs, and ship simple tools that run online.</p>
+            <ul class="checklist">
+              <li>Model & API fundamentals (vendor-agnostic)</li>
+              <li>Prompt design & evaluation patterns</li>
+              <li>Lightweight deployment options</li>
+              <li>Capstone you can publish</li>
+            </ul>
+            <div class="mt-18">
+              <div id="paypal-container-EU93KRXX5TSYA"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>What you'll build</h3>
+            <ul class="bullets">
+              <li><strong>GPT-powered micro-app</strong> (text/image)</li>
+              <li><strong>Retrieval assistant</strong> for your docs</li>
+              <li><strong>No-code automation</strong> with AI in the loop</li>
+            </ul>
+            <p class="fine">Includes starter code snippets & hosting tips.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Pricing (+ Bundle without Business) ====== -->
+    <section id="pricing" class="section">
+      <div class="container">
+        <h2>Pricing</h2>
+        <div class="price-grid">
+          <div class="price-card">
+            <h3>AI for Everyone</h3>
+            <p class="price">$199</p>
+            <ul class="bullets">
+              <li>Full video lessons & slides</li>
+              <li>Templates & resources</li>
+              <li>Community access</li>
+            </ul>
+            <div id="paypal-container-card-everyone" class="mt-12"></div>
+          </div>
+
+          <div class="price-card">
+            <h3>AI Engineering</h3>
+            <p class="price">$179</p>
+            <ul class="bullets">
+              <li>Build & deploy mini-apps</li>
+              <li>API examples & patterns</li>
+              <li>Capstone project</li>
+            </ul>
+            <div id="paypal-container-card-engineering" class="mt-12"></div>
+          </div>
+
+          <div class="price-card highlight" aria-label="Recommended">
+            <h3>Bundle: Everyone + Engineering</h3>
+            <p class="price">$279</p>
+            <ul class="bullets">
+              <li>Both courses together</li>
+              <li>Save vs. buying separately</li>
+              <li>Instant access</li>
+            </ul>
+            <div id="paypal-container-TPPRY2WFGDPJY" class="mt-12"></div>
+            <p class="fine">Business course is not included in this bundle.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== FAQ ====== -->
+    <section id="faq" class="section alt">
+      <div class="container">
+        <h2>FAQ</h2>
+        <details>
+          <summary>Do I need any coding experience?</summary>
+          <p>No. <em>AI for Everyone</em> is designed for true beginners. <em>AI Engineering</em> starts gently and ramps up with guided examples.</p>
+        </details>
+        <details>
+          <summary>How do I get access after buying?</summary>
+          <p>After payment via PayPal, you’ll receive an email with your course access link and materials. If you don’t see it, check spam or contact us.</p>
+        </details>
+        <details>
+          <summary>Can I buy the courses separately?</summary>
+          <p>Yes. Each course has its own Buy button above. The bundle is a discounted option for both courses together.</p>
+        </details>
+        <details>
+          <summary>Do you offer certificates?</summary>
+          <p>Yes. Complete the included project in each course to receive a certificate of completion.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====== Footer ====== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">🤖</span>
+        <span class="brand-text">Learn & Earn AI</span>
+      </div>
+      <p class="fine">© <span id="year"></span> Learn & Earn AI. All rights reserved.</p>
+      <nav aria-label="Footer">
+        <a href="#about">About</a>
+        <a href="#everyone">AI for Everyone</a>
+        <a href="#engineering">AI Engineering</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
     </div>
-    <ul class="course-highlights">
-      <li>8 weeks · 2 lessons/week · 90 mins</li>
-      <li>Live or self‑paced · Hands‑on projects</li>
-      <li>No coding needed · Real monetization tips</li>
-    </ul>
-  </section>
-
-  <section id="syllabus">
-    <h2>8-Week Syllabus</h2>
-    <ul>
-      <li><strong>Week 1:</strong> Intro to AI – Basics, examples, how machines learn.</li>
-      <li><strong>Week 2:</strong> Data & Demos – Train your first model (no code).</li>
-      <li><strong>Week 3:</strong> ML Concepts – Supervised vs. unsupervised, Project #1.</li>
-      <li><strong>Week 4:</strong> Neural Nets – Layers & intuition, prompts.</li>
-      <li><strong>Week 5:</strong> Text & Images – NLP and vision basics.</li>
-      <li><strong>Week 6:</strong> Ethics & Safety – Responsible use.</li>
-      <li><strong>Week 7:</strong> Capstone Build – Chatbot, classifier, or content tool.</li>
-      <li><strong>Week 8:</strong> Showcase & Next Steps – Presentations and feedback.</li>
-    </ul>
-  </section>
-
-  <section id="projects">
-    <h2>Practical Projects</h2>
-    <ul>
-      <li>Chatbot FAQ for a local shop</li>
-      <li>Image classifier for educational demos</li>
-      <li>Content toolkit for blogs & social posts</li>
-    </ul>
-  </section>
-
-  <section id="pricing">
-    <h2>Pricing</h2>
-    <div class="pricing-grid">
-      <div class="pricing-card">
-        <h3>Self-Paced</h3>
-        <p class="price">$99</p>
-        <ul>
-          <li>Video lessons & slides</li>
-          <li>Downloadable resources</li>
-          <li>Community forum</li>
-        </ul>
-        <form action="https://www.paypal.com/buy-now" method="post" target="_blank">
-          <input type="hidden" name="item_name" value="AI for Everyone">
-          <input type="hidden" name="amount" value="99">
-          <button type="submit" class="btn">Buy Now</button>
-        </form>
-      </div>
-
-      <div class="pricing-card">
-        <h3>AI Engineering</h3>
-        <p class="price">$149</p>
-        <ul>
-          <li>Advanced practical lessons</li>
-          <li>Downloadable projects</li>
-          <li>Community support</li>
-        </ul>
-        <form action="https://www.paypal.com/buy-now" method="post" target="_blank">
-          <input type="hidden" name="item_name" value="AI Engineering">
-          <input type="hidden" name="amount" value="149">
-          <button type="submit" class="btn">Buy Now</button>
-        </form>
-      </div>
-
-      <div class="pricing-card">
-        <h3>Bundle Offer</h3>
-        <p class="price">$199</p>
-        <ul>
-          <li>AI for Everyone + AI Engineering</li>
-          <li>Discounted combined price</li>
-          <li>All resources included</li>
-        </ul>
-        <form action="https://www.paypal.com/buy-now" method="post" target="_blank">
-          <input type="hidden" name="item_name" value="AI Bundle">
-          <input type="hidden" name="amount" value="199">
-          <button type="submit" class="btn">Buy Bundle</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>🤖 Learn & Earn AI · © 2025 All rights reserved.</p>
   </footer>
+
+  <!-- ====== Inline JS (nav, smooth scroll, PayPal mounts) ====== -->
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll for in-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const targetId = a.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+          if (navLinks && navLinks.classList.contains('open')) {
+            navLinks.classList.remove('open');
+            navToggle && navToggle.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+    });
+
+    // ====== PayPal Hosted Buttons ======
+    // Course sections (near overviews)
+    paypal.HostedButtons({ hostedButtonId: "4B44NAQ2NQAAS" })
+      .render("#paypal-container-4B44NAQ2NQAAS");
+
+    paypal.HostedButtons({ hostedButtonId: "EU93KRXX5TSYA" })
+      .render("#paypal-container-EU93KRXX5TSYA");
+
+    // Pricing cards (same buttons duplicated for convenience)
+    // If you prefer separate product IDs for the card buttons, replace the IDs below:
+    paypal.HostedButtons({ hostedButtonId: "4B44NAQ2NQAAS" })
+      .render("#paypal-container-card-everyone");
+
+    paypal.HostedButtons({ hostedButtonId: "EU93KRXX5TSYA" })
+      .render("#paypal-container-card-engineering");
+
+    // Bundle (Everyone + Engineering) — Business excluded
+    paypal.HostedButtons({ hostedButtonId: "TPPRY2WFGDPJY" })
+      .render("#paypal-container-TPPRY2WFGDPJY");
+  </script>
 </body>
 </html>
