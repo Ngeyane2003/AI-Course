@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn & Earn AI — Courses & Bundle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg: #0b0f19;
@@ -27,10 +28,11 @@
         html, body {
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
         }
         
         body {
-            font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--text);
             background: linear-gradient(180deg, var(--bg) 0%, #0c1222 100%);
             line-height: 1.6;
@@ -54,7 +56,7 @@
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(11, 15, 25, 0.7);
+            background: rgba(11, 15, 25, 0.95);
             backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border);
         }
@@ -78,10 +80,11 @@
         
         .brand-text {
             letter-spacing: 0.3px;
+            font-size: 1.4rem;
         }
         
         .brand-mark {
-            font-size: 22px;
+            font-size: 28px;
         }
         
         .nav-links {
@@ -93,6 +96,7 @@
         .nav-links a {
             color: var(--muted);
             text-decoration: none;
+            transition: color 0.3s;
         }
         
         .nav-links a:hover {
@@ -107,11 +111,24 @@
             padding: 8px 10px;
             border-radius: 8px;
             font-size: 18px;
+            cursor: pointer;
         }
         
         .hero {
-            padding: 72px 0 32px;
+            padding: 100px 0 60px;
             border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(122, 162, 255, 0.15) 0%, transparent 70%);
         }
         
         .hero-grid {
@@ -119,49 +136,70 @@
             grid-template-columns: 1.1fr 0.9fr;
             gap: 28px;
             align-items: center;
+            position: relative;
+            z-index: 2;
         }
         
         .hero-copy h1 {
-            font-size: 42px;
+            font-size: 3.2rem;
             line-height: 1.15;
-            margin: 0 0 8px;
+            margin: 0 0 16px;
+            background: linear-gradient(to right, #e8eefc, #7aa2ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .lead {
-            font-size: 18px;
+            font-size: 1.25rem;
             color: var(--muted);
-            margin: 0 0 18px;
+            margin: 0 0 28px;
+            max-width: 90%;
         }
         
         .cta {
             display: flex;
-            gap: 12px;
-            margin: 20px 0;
+            gap: 16px;
+            margin: 28px 0;
             flex-wrap: wrap;
         }
         
         .bullets {
-            margin: 16px 0 0;
-            padding-left: 20px;
+            margin: 24px 0 0;
+            padding-left: 24px;
             color: var(--muted);
         }
         
         .bullets li {
-            margin: 6px 0;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .bullets li::before {
+            content: "✓";
+            color: var(--accent);
+            position: absolute;
+            left: -24px;
         }
         
         .btn {
             background: var(--accent-2);
             color: white;
-            padding: 12px 18px;
+            padding: 14px 26px;
             border-radius: 10px;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            font-weight: 600;
         }
         
         .btn:hover {
-            filter: brightness(1.05);
+            filter: brightness(1.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
         }
         
         .btn.ghost {
@@ -170,39 +208,52 @@
             color: var(--text);
         }
         
+        .btn.ghost:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
         .btn.small {
-            padding: 8px 12px;
+            padding: 10px 18px;
+            font-size: 0.9rem;
         }
         
         .btn.block {
             width: 100%;
             text-align: center;
+            justify-content: center;
         }
         
         .pill-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 14px;
+            gap: 10px;
+            margin-top: 20px;
         }
         
         .pill {
             background: rgba(122, 162, 255, 0.12);
             color: var(--text);
-            padding: 8px 12px;
+            padding: 10px 16px;
             border: 1px solid rgba(122, 162, 255, 0.2);
             border-radius: 999px;
             font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .pill i {
+            color: var(--accent);
         }
         
         .hero-card {
             position: relative;
-            min-height: 260px;
-            border-radius: 16px;
+            height: 320px;
+            border-radius: 20px;
             background: radial-gradient(1000px 260px at 10% -10%, rgba(122, 162, 255, 0.35), transparent 40%),
                 linear-gradient(180deg, var(--card), #0f1a33);
             border: 1px solid var(--border);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
             overflow: hidden;
         }
         
@@ -216,139 +267,183 @@
         
         .badge {
             position: absolute;
-            top: 14px;
-            right: 14px;
+            top: 20px;
+            right: 20px;
             background: rgba(22, 163, 74, 0.18);
             border: 1px solid rgba(22, 163, 74, 0.35);
             color: #bbf7d0;
-            padding: 6px 10px;
+            padding: 8px 14px;
             border-radius: 999px;
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         
         .two-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 30px;
             align-items: start;
         }
         
         .card {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 18px;
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
         
         .checklist {
             margin: 0;
-            padding-left: 22px;
+            padding-left: 24px;
         }
         
         .checklist li {
-            margin: 6px 0;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .checklist li::before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: -18px;
+            font-size: 1.4rem;
         }
         
         .fine {
             color: var(--muted);
             font-size: 14px;
+            margin-top: 16px;
+            font-style: italic;
         }
         
         .syllabus {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-top: 18px;
+            gap: 20px;
+            margin-top: 28px;
         }
         
         .sy-card {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 16px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s;
         }
         
         .sy-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent);
         }
         
         .sy-card h3 {
-            margin: 0 0 6px;
+            margin: 0 0 10px;
             font-size: 18px;
+            color: var(--accent);
         }
         
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+            gap: 24px;
         }
         
         .price-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-top: 16px;
+            gap: 20px;
+            margin-top: 28px;
         }
         
         .price-card {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 18px;
+            border-radius: 16px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
         
         .price-card .price {
-            font-size: 32px;
-            margin: 6px 0 8px;
+            font-size: 42px;
+            margin: 16px 0 10px;
+            font-weight: 700;
+            color: var(--accent);
         }
         
         .price-card.highlight {
             outline: 2px solid var(--accent);
-            box-shadow: 0 10px 30px rgba(122, 162, 255, 0.2);
+            box-shadow: 0 15px 40px rgba(122, 162, 255, 0.25);
+            transform: scale(1.03);
+        }
+        
+        .price-card.highlight:hover {
+            transform: scale(1.03) translateY(-5px);
         }
         
         .course-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 14px;
+            gap: 16px;
+            margin-bottom: 20px;
         }
         
         .course-meta {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
         
         .tag {
-            font-size: 12px;
+            font-size: 13px;
             border: 1px solid rgba(255, 255, 255, 0.14);
             border-radius: 999px;
-            padding: 6px 10px;
+            padding: 8px 14px;
             color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
         
         label {
             display: block;
-            margin: 10px 0;
+            margin: 16px 0;
         }
         
         label span {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 600;
+            color: var(--accent);
         }
         
         input, select, textarea {
             width: 100%;
-            padding: 12px 12px;
+            padding: 14px 16px;
             border-radius: 10px;
             background: #0c1224;
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: var(--text);
+            font-family: inherit;
+            transition: all 0.3s;
         }
         
         input:focus, select:focus, textarea:focus {
@@ -357,12 +452,16 @@
         }
         
         .steps {
-            margin: 0 0 6px;
-            padding-left: 22px;
+            margin: 0 0 10px;
+            padding-left: 24px;
+        }
+        
+        .steps li {
+            margin: 12px 0;
         }
         
         .site-footer {
-            padding: 32px 0;
+            padding: 50px 0;
             border-top: 1px solid var(--border);
             background: #0b0f19;
         }
@@ -371,13 +470,14 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 18px;
+            gap: 24px;
         }
         
         footer nav a {
             color: var(--muted);
             text-decoration: none;
-            margin-right: 12px;
+            margin-right: 16px;
+            transition: color 0.3s;
         }
         
         footer nav a:hover {
@@ -396,50 +496,126 @@
             margin-top: 18px;
         }
         
+        .mt-24 {
+            margin-top: 24px;
+        }
+        
         .mb-0 {
             margin-bottom: 0;
+        }
+        
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 24px;
+            color: var(--text);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
         }
         
         .course-links {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 24px;
             margin-top: 40px;
         }
         
         .course-link {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 25px;
+            border-radius: 16px;
+            padding: 30px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s;
             text-decoration: none;
             color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .course-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
         }
         
         .course-link h3 {
-            margin: 15px 0 10px;
-            font-size: 20px;
+            margin: 20px 0 12px;
+            font-size: 22px;
         }
         
         .course-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 48px;
+            margin-bottom: 16px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(122, 162, 255, 0.1);
+            border-radius: 50%;
         }
         
+        details {
+            margin: 16px 0;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        summary {
+            padding: 20px;
+            background: var(--card);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        details[open] summary {
+            color: var(--accent);
+        }
+        
+        details p {
+            padding: 20px;
+            background: var(--bg-alt);
+            margin: 0;
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Responsive Design */
         @media (max-width: 1000px) {
-            .grid {
+            .grid, .course-links {
                 grid-template-columns: 1fr;
             }
             
-            .course-links {
-                grid-template-columns: 1fr;
+            .syllabus {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -452,10 +628,6 @@
                 grid-template-columns: 1fr;
             }
             
-            .syllabus {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
             .price-grid {
                 grid-template-columns: 1fr;
             }
@@ -465,11 +637,13 @@
                 flex-direction: column;
                 position: absolute;
                 right: 20px;
-                top: 64px;
+                top: 80px;
                 background: var(--bg-alt);
-                padding: 12px;
+                padding: 20px;
                 border-radius: 12px;
                 border: 1px solid var(--border);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                z-index: 100;
             }
             
             .nav-links.open {
@@ -479,35 +653,36 @@
             .nav-toggle {
                 display: inline-block;
             }
+            
+            .hero-copy h1 {
+                font-size: 2.5rem;
+            }
+            
+            .lead {
+                font-size: 1.1rem;
+            }
         }
         
-        @media (prefers-color-scheme: light) {
-            :root {
-                --bg: #f8fbff;
-                --bg-alt: #eef5ff;
-                --text: #0b1220;
-                --muted: #3a4a66;
-                --card: #ffffff;
-                --accent: #2b59ff;
-                --accent-2: #2b59ff;
-                --ring: rgba(43, 89, 255, 0.35);
-                --border: rgba(0, 0, 0, 0.06);
+        @media (max-width: 600px) {
+            .syllabus {
+                grid-template-columns: 1fr;
             }
             
-            body {
-                background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+            .cta {
+                flex-direction: column;
             }
             
-            .site-header {
-                background: rgba(255, 255, 255, 0.7);
+            .btn {
+                justify-content: center;
             }
             
-            .hero {
-                border-bottom: 1px solid var(--border);
+            .footer-grid {
+                flex-direction: column;
+                text-align: center;
             }
             
-            .price-card.highlight {
-                box-shadow: 0 10px 30px rgba(43, 89, 255, 0.2);
+            h2 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -524,7 +699,7 @@
             <nav class="nav-links" aria-label="Primary">
                 <a href="#about">About</a>
                 <a href="#syllabus">Syllabus</a>
-                <a href="#projects">Projects</a>
+                <a href="#courses">Courses</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#faq">FAQ</a>
                 <a class="btn small" href="#apply">Apply</a>
@@ -540,8 +715,14 @@
                     <h1>Beginner AI Course: <span class="accent">Learn&nbsp;&nbsp;&&nbsp;&nbsp;Earn</span></h1>
                     <p class="lead">No coding required. Understand AI, build simple projects, and learn real ways to make money with AI tools.</p>
                     <div class="cta">
-                        <a class="btn" href="#apply">Apply Now</a>
-                        <a class="btn ghost" href="#syllabus">See Syllabus</a>
+                        <a class="btn" href="#apply">
+                            <i class="fas fa-arrow-right"></i>
+                            Apply Now
+                        </a>
+                        <a class="btn ghost" href="#syllabus">
+                            <i class="fas fa-book-open"></i>
+                            See Syllabus
+                        </a>
                     </div>
                     <ul class="bullets">
                         <li>8 weeks · 2 lessons/week · 90 mins</li>
@@ -551,7 +732,10 @@
                 </div>
                 <div class="hero-card" role="img" aria-label="Abstract AI illustration">
                     <div class="mesh"></div>
-                    <div class="badge">No Coding Needed</div>
+                    <div class="badge">
+                        <i class="fas fa-graduation-cap"></i>
+                        No Coding Needed
+                    </div>
                 </div>
             </div>
         </section>
@@ -563,12 +747,12 @@
                     <h2>What you'll learn</h2>
                     <p>We make AI simple and practical: how it works, where it's used, and how to turn your new skills into value. Every week includes an activity or mini‑project. By the end, you'll ship a small AI project you can showcase or sell.</p>
                     <div class="pill-grid">
-                        <span class="pill">AI fundamentals</span>
-                        <span class="pill">Hands‑on demos</span>
-                        <span class="pill">Prompting skills</span>
-                        <span class="pill">Ethics & safety</span>
-                        <span class="pill">Portfolio project</span>
-                        <span class="pill">Monetization tips</span>
+                        <span class="pill"><i class="fas fa-brain"></i> AI fundamentals</span>
+                        <span class="pill"><i class="fas fa-hand-point-up"></i> Hands‑on demos</span>
+                        <span class="pill"><i class="fas fa-comment-alt"></i> Prompting skills</span>
+                        <span class="pill"><i class="fas fa-balance-scale"></i> Ethics & safety</span>
+                        <span class="pill"><i class="fas fa-briefcase"></i> Portfolio project</span>
+                        <span class="pill"><i class="fas fa-dollar-sign"></i> Monetization tips</span>
                     </div>
                 </div>
                 <div class="card">
@@ -591,21 +775,21 @@
                 <p class="center lead">Each course is designed for different experience levels and career goals</p>
                 
                 <div class="course-links">
-                    <a href="#ai-for-everyone" class="course-link">
+                    <a href="#ai-for-everyone" class="course-link animate">
                         <div class="course-icon">👥</div>
                         <h3>AI for Everyone</h3>
                         <p>No coding experience needed. Perfect for beginners who want to understand AI fundamentals.</p>
                         <div class="btn small mt-12">View Syllabus</div>
                     </a>
                     
-                    <a href="#ai-for-engineering" class="course-link">
+                    <a href="#ai-for-engineering" class="course-link animate delay-1">
                         <div class="course-icon">⚙️</div>
                         <h3>AI for Engineering</h3>
                         <p>For developers who want to build AI-powered applications and integrate AI into their projects.</p>
                         <div class="btn small mt-12">View Syllabus</div>
                     </a>
                     
-                    <a href="#ai-for-business" class="course-link">
+                    <a href="#ai-for-business" class="course-link animate delay-2">
                         <div class="course-icon">💼</div>
                         <h3>AI for Business</h3>
                         <p>For professionals and leaders who want to leverage AI for business growth and optimization.</p>
@@ -621,51 +805,51 @@
                 <div class="course-header">
                     <h2 class="mb-0">AI for Everyone</h2>
                     <div class="course-meta">
-                        <span class="tag">Beginner</span>
-                        <span class="tag">No Code</span>
-                        <span class="tag">8 Weeks</span>
+                        <span class="tag"><i class="fas fa-user"></i> Beginner</span>
+                        <span class="tag"><i class="fas fa-code"></i> No Code</span>
+                        <span class="tag"><i class="fas fa-clock"></i> 8 Weeks</span>
                     </div>
                 </div>
                 
                 <p>Perfect for absolute beginners. No technical background required. Learn how AI works and how to use AI tools effectively.</p>
                 
                 <div class="syllabus">
-                    <article class="sy-card">
+                    <article class="sy-card animate">
                         <h3>Week 1 · AI Fundamentals</h3>
                         <p>What is AI, history of AI, types of AI, AI in everyday life, demystifying AI terminology.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-1">
                         <h3>Week 2 · How AI Learns</h3>
                         <p>Machine learning basics, training vs inference, data importance, supervised vs unsupervised learning.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-2">
                         <h3>Week 3 · AI Tools & Applications</h3>
                         <p>Popular AI tools overview, chatbots, image generators, practical applications for daily tasks.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate">
                         <h3>Week 4 · Prompt Engineering</h3>
                         <p>Crafting effective prompts, iterative refinement, context setting, output formatting techniques.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-1">
                         <h3>Week 5 · Computer Vision Basics</h3>
                         <p>Image recognition, object detection, facial recognition, practical applications.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-2">
                         <h3>Week 6 · Natural Language Processing</h3>
                         <p>How AI understands language, sentiment analysis, text generation, translation tools.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate">
                         <h3>Week 7 · AI Ethics & Limitations</h3>
                         <p>Bias in AI, privacy concerns, ethical use, current limitations, future implications.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-1">
                         <h3>Week 8 · Your AI Future</h3>
                         <p>Staying updated with AI, learning resources, career opportunities, final project showcase.</p>
                     </article>
                 </div>
                 
-                <div class="center mt-18">
-                    <a href="#pricing" class="btn">Enroll in AI for Everyone</a>
+                <div class="center mt-24">
+                    <a href="#pricing" class="btn"><i class="fas fa-shopping-cart"></i> Enroll in AI for Everyone</a>
                 </div>
             </div>
         </section>
@@ -676,51 +860,51 @@
                 <div class="course-header">
                     <h2 class="mb-0">AI for Engineering</h2>
                     <div class="course-meta">
-                        <span class="tag">Intermediate</span>
-                        <span class="tag">Coding</span>
-                        <span class="tag">8 Weeks</span>
+                        <span class="tag"><i class="fas fa-cogs"></i> Intermediate</span>
+                        <span class="tag"><i class="fas fa-code"></i> Coding</span>
+                        <span class="tag"><i class="fas fa-clock"></i> 8 Weeks</span>
                     </div>
                 </div>
                 
                 <p>For developers and technical professionals. Learn to build AI applications and integrate AI APIs into your projects.</p>
                 
                 <div class="syllabus">
-                    <article class="sy-card">
+                    <article class="sy-card animate">
                         <h3>Week 1 · AI Development Basics</h3>
                         <p>Setting up AI development environment, Python for AI, essential libraries (NumPy, Pandas).</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-1">
                         <h3>Week 2 · Working with AI APIs</h3>
                         <p>OpenAI API, Google AI APIs, authentication, making API calls, handling responses.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-2">
                         <h3>Week 3 · Building Chat Applications</h3>
                         <p>Conversational AI, chatbot development, context management, conversation memory.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate">
                         <h3>Week 4 · Image Generation & Processing</h3>
                         <p>DALL-E, Stable Diffusion, image processing APIs, creating visual content programmatically.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-1">
                         <h3>Week 5 · Natural Language Processing</h3>
                         <p>Text analysis, sentiment detection, named entity recognition, text summarization.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-2">
                         <h3>Week 6 · AI-Powered Automation</h3>
                         <p>Workflow automation, document processing, data extraction, task automation with AI.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate">
                         <h3>Week 7 · Deploying AI Applications</h3>
                         <p>Model deployment, cloud AI services, containerization, scaling AI applications.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-1">
                         <h3>Week 8 · Capstone Project</h3>
                         <p>End-to-end AI application development, integration, testing, and deployment.</p>
                     </article>
                 </div>
                 
-                <div class="center mt-18">
-                    <a href="#pricing" class="btn">Enroll in AI for Engineering</a>
+                <div class="center mt-24">
+                    <a href="#pricing" class="btn"><i class="fas fa-shopping-cart"></i> Enroll in AI for Engineering</a>
                 </div>
             </div>
         </section>
@@ -731,51 +915,51 @@
                 <div class="course-header">
                     <h2 class="mb-0">AI for Business</h2>
                     <div class="course-meta">
-                        <span class="tag">Business</span>
-                        <span class="tag">Strategy</span>
-                        <span class="tag">8 Weeks</span>
+                        <span class="tag"><i class="fas fa-chart-line"></i> Business</span>
+                        <span class="tag"><i class="fas fa-chess"></i> Strategy</span>
+                        <span class="tag"><i class="fas fa-clock"></i> 8 Weeks</span>
                     </div>
                 </div>
                 
                 <p>For professionals, managers, and entrepreneurs. Learn how to leverage AI for business growth, efficiency, and innovation.</p>
                 
                 <div class="syllabus">
-                    <article class="sy-card">
+                    <article class="sy-card animate">
                         <h3>Week 1 · AI Business Fundamentals</h3>
                         <p>AI in business context, competitive advantage, industry applications, ROI calculation.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-1">
                         <h3>Week 2 · AI Strategy Development</h3>
                         <p>Creating AI strategy, identifying opportunities, resource allocation, implementation roadmap.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-2">
                         <h3>Week 3 · AI for Marketing & Sales</h3>
                         <p>Personalization, customer segmentation, chatbots for sales, predictive analytics.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate">
                         <h3>Week 4 · AI in Operations</h3>
                         <p>Process automation, supply chain optimization, predictive maintenance, resource allocation.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-1">
                         <h3>Week 5 · AI for Customer Experience</h3>
                         <p>Customer service automation, sentiment analysis, personalized experiences, feedback analysis.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-2">
                         <h3>Week 6 · Data-Driven Decision Making</h3>
                         <p>Business intelligence with AI, predictive analytics, data visualization, KPI tracking.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate">
                         <h3>Week 7 · Implementing AI Solutions</h3>
                         <p>Vendor selection, implementation planning, change management, training teams.</p>
                     </article>
-                    <article class="sy-card">
+                    <article class="sy-card animate delay-1">
                         <h3>Week 8 · AI Leadership & Ethics</h3>
                         <p>AI governance, ethical considerations, future trends, building AI-ready culture.</p>
                     </article>
                 </div>
                 
-                <div class="center mt-18">
-                    <a href="#pricing" class="btn">Enroll in AI for Business</a>
+                <div class="center mt-24">
+                    <a href="#pricing" class="btn"><i class="fas fa-shopping-cart"></i> Enroll in AI for Business</a>
                 </div>
             </div>
         </section>
@@ -809,7 +993,7 @@
             <div class="container">
                 <h2>Pricing</h2>
                 <div class="price-grid">
-                    <div class="price-card">
+                    <div class="price-card animate">
                         <h3>Self‑Paced</h3>
                         <p class="price">$99</p>
                         <ul class="bullets">
@@ -820,7 +1004,7 @@
                         <a class="btn block" href="#apply">Get Started</a>
                     </div>
 
-                    <div class="price-card highlight" aria-label="Recommended">
+                    <div class="price-card highlight animate delay-1" aria-label="Recommended">
                         <h3>Live Cohort</h3>
                         <p class="price">$249</p>
                         <ul class="bullets">
@@ -831,7 +1015,7 @@
                         <a class="btn block" href="#apply">Reserve a Seat</a>
                     </div>
 
-                    <div class="price-card">
+                    <div class="price-card animate delay-2">
                         <h3>Schools & Teams</h3>
                         <p class="price">Custom</p>
                         <ul class="bullets">
@@ -849,20 +1033,20 @@
         <section id="faq" class="section alt">
             <div class="container">
                 <h2>FAQ</h2>
-                <details>
-                    <summary>Do I need any coding experience?</summary>
+                <details class="animate">
+                    <summary><i class="fas fa-question-circle"></i> Do I need any coding experience?</summary>
                     <p>No. The course is designed for true beginners with clear, visual explanations.</p>
                 </details>
-                <details>
-                    <summary>What tools will we use?</summary>
+                <details class="animate delay-1">
+                    <summary><i class="fas fa-tools"></i> What tools will we use?</summary>
                     <p>ChatGPT, Google Teachable Machine, and other free/no‑code tools. We provide links and guided steps.</p>
                 </details>
-                <details>
-                    <summary>Is there a certificate?</summary>
+                <details class="animate delay-2">
+                    <summary><i class="fas fa-certificate"></i> Is there a certificate?</summary>
                     <p>Yes, you'll receive a completion certificate and a finished project.</p>
                 </details>
-                <details>
-                    <summary>How does the monetization part work?</summary>
+                <details class="animate">
+                    <summary><i class="fas fa-money-bill-wave"></i> How does the monetization part work?</summary>
                     <p>We cover simple, ethical ways to earn: freelance micro‑gigs, selling templates, and offering small chatbots to local businesses.</p>
                 </details>
             </div>
@@ -895,7 +1079,10 @@
                             <span>Message</span>
                             <textarea name="message" rows="4" placeholder="Anything we should know?"></textarea>
                         </label>
-                        <button class="btn" type="submit">Submit Application</button>
+                        <button class="btn" type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Application
+                        </button>
                         <p id="form-status" class="fine" role="status" aria-live="polite"></p>
                     </form>
                 </div>
@@ -955,7 +1142,7 @@
                     target.scrollIntoView({ behavior: 'smooth' });
                     if (navLinks && navLinks.classList.contains('open')) {
                         navLinks.classList.remove('open');
-                        navToggle && navToggle.setAttribute('aria-expanded', 'false');
+                        navToggle.setAttribute('aria-expanded', 'false');
                     }
                 }
             });
@@ -978,6 +1165,25 @@
                 }, 1500);
             });
         }
+
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.sy-card, details, .price-card').forEach(el => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
