@@ -1,0 +1,1 @@
+console.log('AI Course Hub Loaded');
