@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn & Earn AI — Courses & Bundle</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=test&components=buttons&currency=USD"></script>
     <style>
         :root {
             --bg: #0b0f19;
@@ -29,10 +30,11 @@
             margin: 0;
             padding: 0;
             scroll-behavior: smooth;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--text);
             background: linear-gradient(180deg, var(--bg) 0%, #0c1222 100%);
             line-height: 1.6;
@@ -194,6 +196,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s;
             font-weight: 600;
+            cursor: pointer;
         }
         
         .btn:hover {
@@ -594,6 +597,65 @@
             margin: 0;
         }
         
+        /* Syllabus Page Styles */
+        .syllabus-page {
+            display: none;
+            padding: 100px 0;
+            min-height: 100vh;
+        }
+        
+        .syllabus-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .syllabus-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .week-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 24px;
+        }
+        
+        .week-card h3 {
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+        }
+        
+        .week-card ul {
+            padding-left: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .week-card li {
+            margin: 10px 0;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+        
+        .paypal-buttons {
+            margin-top: 30px;
+            min-height: 40px;
+        }
+        
         /* Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -688,435 +750,597 @@
     </style>
 </head>
 <body>
-    <!-- ====== Header / Nav ====== -->
-    <header class="site-header">
-        <div class="container nav">
-            <a class="brand" href="#top" aria-label="Homepage">
-                <span class="brand-mark" aria-hidden="true">🤖</span>
-                <span class="brand-text">Learn & Earn AI</span>
-            </a>
-            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-            <nav class="nav-links" aria-label="Primary">
-                <a href="#about">About</a>
-                <a href="#syllabus">Syllabus</a>
-                <a href="#courses">Courses</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#faq">FAQ</a>
-                <a class="btn small" href="#apply">Apply</a>
-            </nav>
-        </div>
-    </header>
-
-    <main id="top">
-        <!-- ====== Hero ====== -->
-        <section class="hero">
-            <div class="container hero-grid">
-                <div class="hero-copy">
-                    <h1>Beginner AI Course: <span class="accent">Learn&nbsp;&nbsp;&&nbsp;&nbsp;Earn</span></h1>
-                    <p class="lead">No coding required. Understand AI, build simple projects, and learn real ways to make money with AI tools.</p>
-                    <div class="cta">
-                        <a class="btn" href="#apply">
-                            <i class="fas fa-arrow-right"></i>
-                            Apply Now
-                        </a>
-                        <a class="btn ghost" href="#syllabus">
-                            <i class="fas fa-book-open"></i>
-                            See Syllabus
-                        </a>
-                    </div>
-                    <ul class="bullets">
-                        <li>8 weeks · 2 lessons/week · 90 mins</li>
-                        <li>Live or self‑paced · fits classrooms & online</li>
-                        <li>Hands‑on projects · real monetization ideas</li>
-                    </ul>
-                </div>
-                <div class="hero-card" role="img" aria-label="Abstract AI illustration">
-                    <div class="mesh"></div>
-                    <div class="badge">
-                        <i class="fas fa-graduation-cap"></i>
-                        No Coding Needed
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ====== About ====== -->
-        <section id="about" class="section">
-            <div class="container two-col">
-                <div>
-                    <h2>What you'll learn</h2>
-                    <p>We make AI simple and practical: how it works, where it's used, and how to turn your new skills into value. Every week includes an activity or mini‑project. By the end, you'll ship a small AI project you can showcase or sell.</p>
-                    <div class="pill-grid">
-                        <span class="pill"><i class="fas fa-brain"></i> AI fundamentals</span>
-                        <span class="pill"><i class="fas fa-hand-point-up"></i> Hands‑on demos</span>
-                        <span class="pill"><i class="fas fa-comment-alt"></i> Prompting skills</span>
-                        <span class="pill"><i class="fas fa-balance-scale"></i> Ethics & safety</span>
-                        <span class="pill"><i class="fas fa-briefcase"></i> Portfolio project</span>
-                        <span class="pill"><i class="fas fa-dollar-sign"></i> Monetization tips</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>Week 1 Sample</h3>
-                    <ul class="checklist">
-                        <li>What AI is (and isn't)</li>
-                        <li>AI in daily life</li>
-                        <li>How machines learn (no math)</li>
-                        <li>Interactive: "Spot the AI"</li>
-                    </ul>
-                    <p class="fine">Next week: train a tiny model with Google Teachable Machine.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ====== Course Links ====== -->
-        <section class="section alt">
-            <div class="container">
-                <h2 class="center">Explore Our AI Courses</h2>
-                <p class="center lead">Each course is designed for different experience levels and career goals</p>
-                
-                <div class="course-links">
-                    <a href="#ai-for-everyone" class="course-link animate">
-                        <div class="course-icon">👥</div>
-                        <h3>AI for Everyone</h3>
-                        <p>No coding experience needed. Perfect for beginners who want to understand AI fundamentals.</p>
-                        <div class="btn small mt-12">View Syllabus</div>
-                    </a>
-                    
-                    <a href="#ai-for-engineering" class="course-link animate delay-1">
-                        <div class="course-icon">⚙️</div>
-                        <h3>AI for Engineering</h3>
-                        <p>For developers who want to build AI-powered applications and integrate AI into their projects.</p>
-                        <div class="btn small mt-12">View Syllabus</div>
-                    </a>
-                    
-                    <a href="#ai-for-business" class="course-link animate delay-2">
-                        <div class="course-icon">💼</div>
-                        <h3>AI for Business</h3>
-                        <p>For professionals and leaders who want to leverage AI for business growth and optimization.</p>
-                        <div class="btn small mt-12">View Syllabus</div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ====== AI for Everyone Syllabus ====== -->
-        <section id="ai-for-everyone" class="section">
-            <div class="container">
-                <div class="course-header">
-                    <h2 class="mb-0">AI for Everyone</h2>
-                    <div class="course-meta">
-                        <span class="tag"><i class="fas fa-user"></i> Beginner</span>
-                        <span class="tag"><i class="fas fa-code"></i> No Code</span>
-                        <span class="tag"><i class="fas fa-clock"></i> 8 Weeks</span>
-                    </div>
-                </div>
-                
-                <p>Perfect for absolute beginners. No technical background required. Learn how AI works and how to use AI tools effectively.</p>
-                
-                <div class="syllabus">
-                    <article class="sy-card animate">
-                        <h3>Week 1 · AI Fundamentals</h3>
-                        <p>What is AI, history of AI, types of AI, AI in everyday life, demystifying AI terminology.</p>
-                    </article>
-                    <article class="sy-card animate delay-1">
-                        <h3>Week 2 · How AI Learns</h3>
-                        <p>Machine learning basics, training vs inference, data importance, supervised vs unsupervised learning.</p>
-                    </article>
-                    <article class="sy-card animate delay-2">
-                        <h3>Week 3 · AI Tools & Applications</h3>
-                        <p>Popular AI tools overview, chatbots, image generators, practical applications for daily tasks.</p>
-                    </article>
-                    <article class="sy-card animate">
-                        <h3>Week 4 · Prompt Engineering</h3>
-                        <p>Crafting effective prompts, iterative refinement, context setting, output formatting techniques.</p>
-                    </article>
-                    <article class="sy-card animate delay-1">
-                        <h3>Week 5 · Computer Vision Basics</h3>
-                        <p>Image recognition, object detection, facial recognition, practical applications.</p>
-                    </article>
-                    <article class="sy-card animate delay-2">
-                        <h3>Week 6 · Natural Language Processing</h3>
-                        <p>How AI understands language, sentiment analysis, text generation, translation tools.</p>
-                    </article>
-                    <article class="sy-card animate">
-                        <h3>Week 7 · AI Ethics & Limitations</h3>
-                        <p>Bias in AI, privacy concerns, ethical use, current limitations, future implications.</p>
-                    </article>
-                    <article class="sy-card animate delay-1">
-                        <h3>Week 8 · Your AI Future</h3>
-                        <p>Staying updated with AI, learning resources, career opportunities, final project showcase.</p>
-                    </article>
-                </div>
-                
-                <div class="center mt-24">
-                    <a href="#pricing" class="btn"><i class="fas fa-shopping-cart"></i> Enroll in AI for Everyone</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ====== AI for Engineering Syllabus ====== -->
-        <section id="ai-for-engineering" class="section alt">
-            <div class="container">
-                <div class="course-header">
-                    <h2 class="mb-0">AI for Engineering</h2>
-                    <div class="course-meta">
-                        <span class="tag"><i class="fas fa-cogs"></i> Intermediate</span>
-                        <span class="tag"><i class="fas fa-code"></i> Coding</span>
-                        <span class="tag"><i class="fas fa-clock"></i> 8 Weeks</span>
-                    </div>
-                </div>
-                
-                <p>For developers and technical professionals. Learn to build AI applications and integrate AI APIs into your projects.</p>
-                
-                <div class="syllabus">
-                    <article class="sy-card animate">
-                        <h3>Week 1 · AI Development Basics</h3>
-                        <p>Setting up AI development environment, Python for AI, essential libraries (NumPy, Pandas).</p>
-                    </article>
-                    <article class="sy-card animate delay-1">
-                        <h3>Week 2 · Working with AI APIs</h3>
-                        <p>OpenAI API, Google AI APIs, authentication, making API calls, handling responses.</p>
-                    </article>
-                    <article class="sy-card animate delay-2">
-                        <h3>Week 3 · Building Chat Applications</h3>
-                        <p>Conversational AI, chatbot development, context management, conversation memory.</p>
-                    </article>
-                    <article class="sy-card animate">
-                        <h3>Week 4 · Image Generation & Processing</h3>
-                        <p>DALL-E, Stable Diffusion, image processing APIs, creating visual content programmatically.</p>
-                    </article>
-                    <article class="sy-card animate delay-1">
-                        <h3>Week 5 · Natural Language Processing</h3>
-                        <p>Text analysis, sentiment detection, named entity recognition, text summarization.</p>
-                    </article>
-                    <article class="sy-card animate delay-2">
-                        <h3>Week 6 · AI-Powered Automation</h3>
-                        <p>Workflow automation, document processing, data extraction, task automation with AI.</p>
-                    </article>
-                    <article class="sy-card animate">
-                        <h3>Week 7 · Deploying AI Applications</h3>
-                        <p>Model deployment, cloud AI services, containerization, scaling AI applications.</p>
-                    </article>
-                    <article class="sy-card animate delay-1">
-                        <h3>Week 8 · Capstone Project</h3>
-                        <p>End-to-end AI application development, integration, testing, and deployment.</p>
-                    </article>
-                </div>
-                
-                <div class="center mt-24">
-                    <a href="#pricing" class="btn"><i class="fas fa-shopping-cart"></i> Enroll in AI for Engineering</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ====== AI for Business Syllabus ====== -->
-        <section id="ai-for-business" class="section">
-            <div class="container">
-                <div class="course-header">
-                    <h2 class="mb-0">AI for Business</h2>
-                    <div class="course-meta">
-                        <span class="tag"><i class="fas fa-chart-line"></i> Business</span>
-                        <span class="tag"><i class="fas fa-chess"></i> Strategy</span>
-                        <span class="tag"><i class="fas fa-clock"></i> 8 Weeks</span>
-                    </div>
-                </div>
-                
-                <p>For professionals, managers, and entrepreneurs. Learn how to leverage AI for business growth, efficiency, and innovation.</p>
-                
-                <div class="syllabus">
-                    <article class="sy-card animate">
-                        <h3>Week 1 · AI Business Fundamentals</h3>
-                        <p>AI in business context, competitive advantage, industry applications, ROI calculation.</p>
-                    </article>
-                    <article class="sy-card animate delay-1">
-                        <h3>Week 2 · AI Strategy Development</h3>
-                        <p>Creating AI strategy, identifying opportunities, resource allocation, implementation roadmap.</p>
-                    </article>
-                    <article class="sy-card animate delay-2">
-                        <h3>Week 3 · AI for Marketing & Sales</h3>
-                        <p>Personalization, customer segmentation, chatbots for sales, predictive analytics.</p>
-                    </article>
-                    <article class="sy-card animate">
-                        <h3>Week 4 · AI in Operations</h3>
-                        <p>Process automation, supply chain optimization, predictive maintenance, resource allocation.</p>
-                    </article>
-                    <article class="sy-card animate delay-1">
-                        <h3>Week 5 · AI for Customer Experience</h3>
-                        <p>Customer service automation, sentiment analysis, personalized experiences, feedback analysis.</p>
-                    </article>
-                    <article class="sy-card animate delay-2">
-                        <h3>Week 6 · Data-Driven Decision Making</h3>
-                        <p>Business intelligence with AI, predictive analytics, data visualization, KPI tracking.</p>
-                    </article>
-                    <article class="sy-card animate">
-                        <h3>Week 7 · Implementing AI Solutions</h3>
-                        <p>Vendor selection, implementation planning, change management, training teams.</p>
-                    </article>
-                    <article class="sy-card animate delay-1">
-                        <h3>Week 8 · AI Leadership & Ethics</h3>
-                        <p>AI governance, ethical considerations, future trends, building AI-ready culture.</p>
-                    </article>
-                </div>
-                
-                <div class="center mt-24">
-                    <a href="#pricing" class="btn"><i class="fas fa-shopping-cart"></i> Enroll in AI for Business</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ====== Projects ====== -->
-        <section id="projects" class="section alt">
-            <div class="container two-col">
-                <div>
-                    <h2>Practical projects</h2>
-                    <p>Each project is designed for beginners and can be packaged for portfolios or micro‑sales.</p>
-                    <ul class="bullets">
-                        <li><strong>Chatbot FAQ</strong> for a local shop</li>
-                        <li><strong>Image classifier</strong> for educational demos</li>
-                        <li><strong>Content toolkit</strong> for blogs & social posts</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Make money with AI</h3>
-                    <ul class="checklist">
-                        <li>Freelance micro‑gigs (copy, prompts, research)</li>
-                        <li>Sell templates & mini‑tools (Gumroad/Etsy)</li>
-                        <li>Offer simple chatbots to local businesses</li>
-                    </ul>
-                    <p class="fine">We show you how to package, price, and pitch ethically.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ====== Pricing ====== -->
-        <section id="pricing" class="section">
-            <div class="container">
-                <h2>Pricing</h2>
-                <div class="price-grid">
-                    <div class="price-card animate">
-                        <h3>Self‑Paced</h3>
-                        <p class="price">$99</p>
-                        <ul class="bullets">
-                            <li>Video lessons & slides</li>
-                            <li>Downloadable resources</li>
-                            <li>Community forum</li>
-                        </ul>
-                        <a class="btn block" href="#apply">Get Started</a>
-                    </div>
-
-                    <div class="price-card highlight animate delay-1" aria-label="Recommended">
-                        <h3>Live Cohort</h3>
-                        <p class="price">$249</p>
-                        <ul class="bullets">
-                            <li>8 live sessions</li>
-                            <li>Project feedback</li>
-                            <li>Certificate of completion</li>
-                        </ul>
-                        <a class="btn block" href="#apply">Reserve a Seat</a>
-                    </div>
-
-                    <div class="price-card animate delay-2">
-                        <h3>Schools & Teams</h3>
-                        <p class="price">Custom</p>
-                        <ul class="bullets">
-                            <li>Teacher pack & LMS</li>
-                            <li>Private cohort</li>
-                            <li>Site license options</li>
-                        </ul>
-                        <a class="btn block" href="#apply">Request Quote</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ====== FAQ ====== -->
-        <section id="faq" class="section alt">
-            <div class="container">
-                <h2>FAQ</h2>
-                <details class="animate">
-                    <summary><i class="fas fa-question-circle"></i> Do I need any coding experience?</summary>
-                    <p>No. The course is designed for true beginners with clear, visual explanations.</p>
-                </details>
-                <details class="animate delay-1">
-                    <summary><i class="fas fa-tools"></i> What tools will we use?</summary>
-                    <p>ChatGPT, Google Teachable Machine, and other free/no‑code tools. We provide links and guided steps.</p>
-                </details>
-                <details class="animate delay-2">
-                    <summary><i class="fas fa-certificate"></i> Is there a certificate?</summary>
-                    <p>Yes, you'll receive a completion certificate and a finished project.</p>
-                </details>
-                <details class="animate">
-                    <summary><i class="fas fa-money-bill-wave"></i> How does the monetization part work?</summary>
-                    <p>We cover simple, ethical ways to earn: freelance micro‑gigs, selling templates, and offering small chatbots to local businesses.</p>
-                </details>
-            </div>
-        </section>
-
-        <!-- ====== Apply ====== -->
-        <section id="apply" class="section">
-            <div class="container two-col">
-                <div>
-                    <h2>Apply now</h2>
-                    <p>Seats are limited for the live cohort. Tell us a bit about you and we'll get back within 48 hours.</p>
-                    <form id="apply-form" aria-label="Application form">
-                        <label>
-                            <span>Name</span>
-                            <input type="text" name="name" required placeholder="Your full name">
-                        </label>
-                        <label>
-                            <span>Email</span>
-                            <input type="email" name="email" required placeholder="you@example.com">
-                        </label>
-                        <label>
-                            <span>Which track?</span>
-                            <select name="track" required>
-                                <option value="live">Live Cohort</option>
-                                <option value="self">Self‑Paced</option>
-                                <option value="schools">Schools/Teams</option>
-                            </select>
-                        </label>
-                        <label>
-                            <span>Message</span>
-                            <textarea name="message" rows="4" placeholder="Anything we should know?"></textarea>
-                        </label>
-                        <button class="btn" type="submit">
-                            <i class="fas fa-paper-plane"></i>
-                            Submit Application
-                        </button>
-                        <p id="form-status" class="fine" role="status" aria-live="polite"></p>
-                    </form>
-                </div>
-                <div class="card">
-                    <h3>What happens next?</h3>
-                    <ol class="steps">
-                        <li>Submit your application</li>
-                        <li>We review & email details</li>
-                        <li>Secure your spot with payment</li>
-                    </ol>
-                    <p class="fine">Want to host this course at your school? Select "Schools/Teams."</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ====== Footer ====== -->
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div>
-                <div class="brand">
+    <!-- ====== Main Landing Page ====== -->
+    <div id="landing-page">
+        <!-- ====== Header / Nav ====== -->
+        <header class="site-header">
+            <div class="container nav">
+                <a class="brand" href="#top" aria-label="Homepage">
                     <span class="brand-mark" aria-hidden="true">🤖</span>
                     <span class="brand-text">Learn & Earn AI</span>
-                </div>
-                <p class="fine">© <span id="year"></span> Learn & Earn AI. All rights reserved.</p>
+                </a>
+                <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+                <nav class="nav-links" aria-label="Primary">
+                    <a href="#about">About</a>
+                    <a href="#courses">Courses</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#faq">FAQ</a>
+                    <a class="btn small" href="#apply">Apply</a>
+                </nav>
             </div>
-            <nav aria-label="Footer">
-                <a href="#about">About</a>
-                <a href="#syllabus">Syllabus</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#apply">Apply</a>
-            </nav>
+        </header>
+
+        <main id="top">
+            <!-- ====== Hero ====== -->
+            <section class="hero">
+                <div class="container hero-grid">
+                    <div class="hero-copy">
+                        <h1>Beginner AI Course: <span class="accent">Learn&nbsp;&nbsp;&&nbsp;&nbsp;Earn</span></h1>
+                        <p class="lead">No coding required. Understand AI, build simple projects, and learn real ways to make money with AI tools.</p>
+                        <div class="cta">
+                            <a class="btn" href="#apply">
+                                <i class="fas fa-arrow-right"></i>
+                                Apply Now
+                            </a>
+                            <a class="btn ghost" href="#courses">
+                                <i class="fas fa-book-open"></i>
+                                View Courses
+                            </a>
+                        </div>
+                        <ul class="bullets">
+                            <li>8 weeks · 2 lessons/week · 90 mins</li>
+                            <li>Live or self‑paced · fits classrooms & online</li>
+                            <li>Hands‑on projects · real monetization ideas</li>
+                        </ul>
+                    </div>
+                    <div class="hero-card" role="img" aria-label="Abstract AI illustration">
+                        <div class="mesh"></div>
+                        <div class="badge">
+                            <i class="fas fa-graduation-cap"></i>
+                            No Coding Needed
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ====== About ====== -->
+            <section id="about" class="section">
+                <div class="container two-col">
+                    <div>
+                        <h2>What you'll learn</h2>
+                        <p>We make AI simple and practical: how it works, where it's used, and how to turn your new skills into value. Every week includes an activity or mini‑project. By the end, you'll ship a small AI project you can showcase or sell.</p>
+                        <div class="pill-grid">
+                            <span class="pill"><i class="fas fa-brain"></i> AI fundamentals</span>
+                            <span class="pill"><i class="fas fa-hand-point-up"></i> Hands‑on demos</span>
+                            <span class="pill"><i class="fas fa-comment-alt"></i> Prompting skills</span>
+                            <span class="pill"><i class="fas fa-balance-scale"></i> Ethics & safety</span>
+                            <span class="pill"><i class="fas fa-briefcase"></i> Portfolio project</span>
+                            <span class="pill"><i class="fas fa-dollar-sign"></i> Monetization tips</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Week 1 Sample</h3>
+                        <ul class="checklist">
+                            <li>What AI is (and isn't)</li>
+                            <li>AI in daily life</li>
+                            <li>How machines learn (no math)</li>
+                            <li>Interactive: "Spot the AI"</li>
+                        </ul>
+                        <p class="fine">Next week: train a tiny model with Google Teachable Machine.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ====== Course Links ====== -->
+            <section id="courses" class="section alt">
+                <div class="container">
+                    <h2 class="center">Explore Our AI Courses</h2>
+                    <p class="center lead">Each course is designed for different experience levels and career goals</p>
+                    
+                    <div class="course-links">
+                        <a href="javascript:void(0)" onclick="showSyllabus('ai-for-everyone')" class="course-link animate">
+                            <div class="course-icon">👥</div>
+                            <h3>AI for Everyone</h3>
+                            <p>No coding experience needed. Perfect for beginners who want to understand AI fundamentals.</p>
+                            <div class="btn small mt-12">View Syllabus</div>
+                        </a>
+                        
+                        <a href="javascript:void(0)" onclick="showSyllabus('ai-for-engineering')" class="course-link animate delay-1">
+                            <div class="course-icon">⚙️</div>
+                            <h3>AI for Engineering</h3>
+                            <p>For developers who want to build AI-powered applications and integrate AI into their projects.</p>
+                            <div class="btn small mt-12">View Syllabus</div>
+                        </a>
+                        
+                        <a href="javascript:void(0)" onclick="showSyllabus('ai-for-business')" class="course-link animate delay-2">
+                            <div class="course-icon">💼</div>
+                            <h3>AI for Business</h3>
+                            <p>For professionals and leaders who want to leverage AI for business growth and optimization.</p>
+                            <div class="btn small mt-12">View Syllabus</div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ====== Projects ====== -->
+            <section id="projects" class="section">
+                <div class="container two-col">
+                    <div>
+                        <h2>Practical projects</h2>
+                        <p>Each project is designed for beginners and can be packaged for portfolios or micro‑sales.</p>
+                        <ul class="bullets">
+                            <li><strong>Chatbot FAQ</strong> for a local shop</li>
+                            <li><strong>Image classifier</strong> for educational demos</li>
+                            <li><strong>Content toolkit</strong> for blogs & social posts</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Make money with AI</h3>
+                        <ul class="checklist">
+                            <li>Freelance micro‑gigs (copy, prompts, research)</li>
+                            <li>Sell templates & mini‑tools (Gumroad/Etsy)</li>
+                            <li>Offer simple chatbots to local businesses</li>
+                        </ul>
+                        <p class="fine">We show you how to package, price, and pitch ethically.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ====== Pricing ====== -->
+            <section id="pricing" class="section alt">
+                <div class="container">
+                    <h2>Pricing</h2>
+                    <div class="price-grid">
+                        <div class="price-card animate">
+                            <h3>Self‑Paced</h3>
+                            <p class="price">$99</p>
+                            <ul class="bullets">
+                                <li>Video lessons & slides</li>
+                                <li>Downloadable resources</li>
+                                <li>Community forum</li>
+                            </ul>
+                            <a class="btn block" href="#apply">Get Started</a>
+                        </div>
+
+                        <div class="price-card highlight animate delay-1" aria-label="Recommended">
+                            <h3>Live Cohort</h3>
+                            <p class="price">$249</p>
+                            <ul class="bullets">
+                                <li>8 live sessions</li>
+                                <li>Project feedback</li>
+                                <li>Certificate of completion</li>
+                            </ul>
+                            <a class="btn block" href="#apply">Reserve a Seat</a>
+                        </div>
+
+                        <div class="price-card animate delay-2">
+                            <h3>Schools & Teams</h3>
+                            <p class="price">Custom</p>
+                            <ul class="bullets">
+                                <li>Teacher pack & LMS</li>
+                                <li>Private cohort</li>
+                                <li>Site license options</li>
+                            </ul>
+                            <a class="btn block" href="#apply">Request Quote</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ====== FAQ ====== -->
+            <section id="faq" class="section">
+                <div class="container">
+                    <h2>FAQ</h2>
+                    <details class="animate">
+                        <summary><i class="fas fa-question-circle"></i> Do I need any coding experience?</summary>
+                        <p>No. The course is designed for true beginners with clear, visual explanations.</p>
+                    </details>
+                    <details class="animate delay-1">
+                        <summary><i class="fas fa-tools"></i> What tools will we use?</summary>
+                        <p>ChatGPT, Google Teachable Machine, and other free/no‑code tools. We provide links and guided steps.</p>
+                    </details>
+                    <details class="animate delay-2">
+                        <summary><i class="fas fa-certificate"></i> Is there a certificate?</summary>
+                        <p>Yes, you'll receive a completion certificate and a finished project.</p>
+                    </details>
+                    <details class="animate">
+                        <summary><i class="fas fa-money-bill-wave"></i> How does the monetization part work?</summary>
+                        <p>We cover simple, ethical ways to earn: freelance micro‑gigs, selling templates, and offering small chatbots to local businesses.</p>
+                    </details>
+                </div>
+            </section>
+
+            <!-- ====== Apply ====== -->
+            <section id="apply" class="section alt">
+                <div class="container two-col">
+                    <div>
+                        <h2>Apply now</h2>
+                        <p>Seats are limited for the live cohort. Tell us a bit about you and we'll get back within 48 hours.</p>
+                        <form id="apply-form" aria-label="Application form">
+                            <label>
+                                <span>Name</span>
+                                <input type="text" name="name" required placeholder="Your full name">
+                            </label>
+                            <label>
+                                <span>Email</span>
+                                <input type="email" name="email" required placeholder="you@example.com">
+                            </label>
+                            <label>
+                                <span>Which track?</span>
+                                <select name="track" required>
+                                    <option value="live">Live Cohort</option>
+                                    <option value="self">Self‑Paced</option>
+                                    <option value="schools">Schools/Teams</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Message</span>
+                                <textarea name="message" rows="4" placeholder="Anything we should know?"></textarea>
+                            </label>
+                            <button class="btn" type="submit">
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Application
+                            </button>
+                            <p id="form-status" class="fine" role="status" aria-live="polite"></p>
+                        </form>
+                    </div>
+                    <div class="card">
+                        <h3>What happens next?</h3>
+                        <ol class="steps">
+                            <li>Submit your application</li>
+                            <li>We review & email details</li>
+                            <li>Secure your spot with payment</li>
+                        </ol>
+                        <p class="fine">Want to host this course at your school? Select "Schools/Teams."</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ====== Footer ====== -->
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <div>
+                    <div class="brand">
+                        <span class="brand-mark" aria-hidden="true">🤖</span>
+                        <span class="brand-text">Learn & Earn AI</span>
+                    </div>
+                    <p class="fine">© <span id="year"></span> Learn & Earn AI. All rights reserved.</p>
+                </div>
+                <nav aria-label="Footer">
+                    <a href="#about">About</a>
+                    <a href="#courses">Courses</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#apply">Apply</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ====== Syllabus Pages ====== -->
+    
+    <!-- AI for Everyone Syllabus -->
+    <div id="ai-for-everyone" class="syllabus-page">
+        <div class="container">
+            <a href="javascript:void(0)" onclick="showLandingPage()" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Courses
+            </a>
+            
+            <div class="syllabus-header">
+                <h2>AI for Everyone</h2>
+                <p class="lead">No coding experience needed. Perfect for beginners who want to understand AI fundamentals.</p>
+            </div>
+            
+            <div class="syllabus-content">
+                <div class="week-card">
+                    <h3>Week 1 · AI Fundamentals</h3>
+                    <ul>
+                        <li>What is AI, history of AI, types of AI</li>
+                        <li>AI in everyday life</li>
+                        <li>Demystifying AI terminology</li>
+                        <li>Interactive exercise: "Spot the AI" in daily life</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 2 · How AI Learns</h3>
+                    <ul>
+                        <li>Machine learning basics</li>
+                        <li>Training vs inference</li>
+                        <li>Data importance in AI</li>
+                        <li>Supervised vs unsupervised learning</li>
+                        <li>Hands-on: Train a model with Google Teachable Machine</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 3 · AI Tools & Applications</h3>
+                    <ul>
+                        <li>Popular AI tools overview</li>
+                        <li>Chatbots and virtual assistants</li>
+                        <li>Image generators and editors</li>
+                        <li>Practical applications for daily tasks</li>
+                        <li>Project: Create a simple chatbot</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 4 · Prompt Engineering</h3>
+                    <ul>
+                        <li>Crafting effective prompts</li>
+                        <li>Iterative refinement techniques</li>
+                        <li>Context setting strategies</li>
+                        <li>Output formatting techniques</li>
+                        <li>Project: Create a prompt library</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 5 · Computer Vision Basics</h3>
+                    <ul>
+                        <li>Image recognition fundamentals</li>
+                        <li>Object detection techniques</li>
+                        <li>Facial recognition technology</li>
+                        <li>Practical applications</li>
+                        <li>Project: Build an image classifier</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 6 · Natural Language Processing</h3>
+                    <ul>
+                        <li>How AI understands language</li>
+                        <li>Sentiment analysis</li>
+                        <li>Text generation techniques</li>
+                        <li>Translation tools</li>
+                        <li>Project: Create a text analysis tool</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 7 · AI Ethics & Limitations</h3>
+                    <ul>
+                        <li>Bias in AI systems</li>
+                        <li>Privacy concerns</li>
+                        <li>Ethical use guidelines</li>
+                        <li>Current limitations of AI</li>
+                        <li>Future implications</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 8 · Your AI Future</h3>
+                    <ul>
+                        <li>Staying updated with AI developments</li>
+                        <li>Learning resources and communities</li>
+                        <li>Career opportunities in AI</li>
+                        <li>Final project showcase</li>
+                        <li>Next steps in your AI journey</li>
+                    </ul>
+                </div>
+                
+                <div class="center mt-24">
+                    <div id="paypal-button-ai-everyone" class="paypal-buttons"></div>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
+
+    <!-- AI for Engineering Syllabus -->
+    <div id="ai-for-engineering" class="syllabus-page">
+        <div class="container">
+            <a href="javascript:void(0)" onclick="showLandingPage()" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Courses
+            </a>
+            
+            <div class="syllabus-header">
+                <h2>AI for Engineering</h2>
+                <p class="lead">For developers who want to build AI-powered applications and integrate AI into their projects.</p>
+            </div>
+            
+            <div class="syllabus-content">
+                <div class="week-card">
+                    <h3>Week 1 · AI Development Basics</h3>
+                    <ul>
+                        <li>Setting up AI development environment</li>
+                        <li>Python for AI programming</li>
+                        <li>Essential libraries (NumPy, Pandas, Scikit-learn)</li>
+                        <li>Introduction to Jupyter notebooks</li>
+                        <li>Hands-on: Environment setup and first program</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 2 · Working with AI APIs</h3>
+                    <ul>
+                        <li>OpenAI API fundamentals</li>
+                        <li>Google AI APIs overview</li>
+                        <li>Authentication and security</li>
+                        <li>Making API calls and handling responses</li>
+                        <li>Project: Build a simple API integration</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 3 · Building Chat Applications</h3>
+                    <ul>
+                        <li>Conversational AI principles</li>
+                        <li>Chatbot development frameworks</li>
+                        <li>Context management strategies</li>
+                        <li>Conversation memory techniques</li>
+                        <li>Project: Create a functional chatbot</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 4 · Image Generation & Processing</h3>
+                    <ul>
+                        <li>DALL-E and image generation APIs</li>
+                        <li>Stable Diffusion fundamentals</li>
+                        <li>Image processing and manipulation</li>
+                        <li>Creating visual content programmatically</li>
+                        <li>Project: Build an image generator app</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 5 · Natural Language Processing</h3>
+                    <ul>
+                        <li>Text analysis techniques</li>
+                        <li>Sentiment detection algorithms</li>
+                        <li>Named entity recognition</li>
+                        <li>Text summarization methods</li>
+                        <li>Project: Develop a text analysis tool</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 6 · AI-Powered Automation</h3>
+                    <ul>
+                        <li>Workflow automation strategies</li>
+                        <li>Document processing with AI</li>
+                        <li>Data extraction techniques</li>
+                        <li>Task automation patterns</li>
+                        <li>Project: Create an automation script</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 7 · Deploying AI Applications</h3>
+                    <ul>
+                        <li>Model deployment strategies</li>
+                        <li>Cloud AI services overview</li>
+                        <li>Containerization for AI apps</li>
+                        <li>Scaling AI applications</li>
+                        <li>Project: Deploy a simple AI model</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 8 · Capstone Project</h3>
+                    <ul>
+                        <li>End-to-end AI application development</li>
+                        <li>Integration of multiple AI services</li>
+                        <li>Testing and validation strategies</li>
+                        <li>Deployment and presentation</li>
+                        <li>Final project showcase and review</li>
+                    </ul>
+                </div>
+                
+                <div class="center mt-24">
+                    <div id="paypal-button-ai-engineering" class="paypal-buttons"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI for Business Syllabus -->
+    <div id="ai-for-business" class="syllabus-page">
+        <div class="container">
+            <a href="javascript:void(0)" onclick="showLandingPage()" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Courses
+            </a>
+            
+            <div class="syllabus-header">
+                <h2>AI for Business</h2>
+                <p class="lead">For professionals and leaders who want to leverage AI for business growth and optimization.</p>
+            </div>
+            
+            <div class="syllabus-content">
+                <div class="week-card">
+                    <h3>Week 1 · AI Business Fundamentals</h3>
+                    <ul>
+                        <li>AI in business context</li>
+                        <li>Competitive advantage through AI</li>
+                        <li>Industry-specific applications</li>
+                        <li>ROI calculation for AI projects</li>
+                        <li>Case studies: Successful AI implementations</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 2 · AI Strategy Development</h3>
+                    <ul>
+                        <li>Creating effective AI strategy</li>
+                        <li>Identifying AI opportunities</li>
+                        <li>Resource allocation for AI initiatives</li>
+                        <li>Implementation roadmap development</li>
+                        <li>Workshop: Develop your AI strategy</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 3 · AI for Marketing & Sales</h3>
+                    <ul>
+                        <li>Personalization at scale</li>
+                        <li>Customer segmentation with AI</li>
+                        <li>Chatbots for sales and support</li>
+                        <li>Predictive analytics for marketing</li>
+                        <li>Project: Design an AI marketing campaign</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 4 · AI in Operations</h3>
+                    <ul>
+                        <li>Process automation techniques</li>
+                        <li>Supply chain optimization</li>
+                        <li>Predictive maintenance strategies</li>
+                        <li>Resource allocation optimization</li>
+                        <li>Case study: AI in operations</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 5 · AI for Customer Experience</h3>
+                    <ul>
+                        <li>Customer service automation</li>
+                        <li>Sentiment analysis for feedback</li>
+                        <li>Personalized customer experiences</li>
+                        <li>Feedback analysis techniques</li>
+                        <li>Project: Design AI-enhanced customer journey</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 6 · Data-Driven Decision Making</h3>
+                    <ul>
+                        <li>Business intelligence with AI</li>
+                        <li>Predictive analytics fundamentals</li>
+                        <li>Data visualization techniques</li>
+                        <li>KPI tracking with AI</li>
+                        <li>Workshop: Create a data-driven decision framework</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 7 · Implementing AI Solutions</h3>
+                    <ul>
+                        <li>Vendor selection criteria</li>
+                        <li>Implementation planning</li>
+                        <li>Change management strategies</li>
+                        <li>Training teams for AI adoption</li>
+                        <li>Case study: AI implementation challenges</li>
+                    </ul>
+                </div>
+                
+                <div class="week-card">
+                    <h3>Week 8 · AI Leadership & Ethics</h3>
+                    <ul>
+                        <li>AI governance frameworks</li>
+                        <li>Ethical considerations in AI</li>
+                        <li>Future trends in business AI</li>
+                        <li>Building AI-ready culture</li>
+                        <li>Final project: AI transformation plan</li>
+                    </ul>
+                </div>
+                
+                <div class="center mt-24">
+                    <div id="paypal-button-ai-business" class="paypal-buttons"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Mobile nav toggle
@@ -1166,6 +1390,76 @@
             });
         }
 
+        // Show syllabus page
+        function showSyllabus(courseId) {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById(courseId).style.display = 'block';
+            
+            // Initialize PayPal buttons for this course
+            initPayPalButtons(courseId);
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Show landing page
+        function showLandingPage() {
+            document.querySelectorAll('.syllabus-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById('landing-page').style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Initialize PayPal buttons
+        function initPayPalButtons(courseId) {
+            // Clear previous buttons
+            document.querySelectorAll('.paypal-buttons').forEach(div => {
+                div.innerHTML = '';
+            });
+            
+            // Create new buttons
+            let buttonContainer, price, description;
+            
+            switch(courseId) {
+                case 'ai-for-everyone':
+                    buttonContainer = 'paypal-button-ai-everyone';
+                    price = '99.00';
+                    description = 'AI for Everyone Course';
+                    break;
+                case 'ai-for-engineering':
+                    buttonContainer = 'paypal-button-ai-engineering';
+                    price = '179.00';
+                    description = 'AI for Engineering Course';
+                    break;
+                case 'ai-for-business':
+                    buttonContainer = 'paypal-button-ai-business';
+                    price = '199.00';
+                    description = 'AI for Business Course';
+                    break;
+            }
+            
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: price
+                            },
+                            description: description
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                    });
+                }
+            }).render('#' + buttonContainer);
+        }
+        
         // Animation on scroll
         const observerOptions = {
             root: null,
