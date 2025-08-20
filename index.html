@@ -266,6 +266,12 @@
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .sy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         
         .sy-card h3 {
@@ -394,8 +400,45 @@
             margin-bottom: 0;
         }
         
+        .course-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .course-link {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+        }
+        
+        .course-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .course-link h3 {
+            margin: 15px 0 10px;
+            font-size: 20px;
+        }
+        
+        .course-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
         @media (max-width: 1000px) {
             .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .course-links {
                 grid-template-columns: 1fr;
             }
         }
@@ -518,7 +561,7 @@
             <div class="container two-col">
                 <div>
                     <h2>What you'll learn</h2>
-                    <p>We make AI simple and practical: how it works, where it’s used, and how to turn your new skills into value. Every week includes an activity or mini‑project. By the end, you’ll ship a small AI project you can showcase or sell.</p>
+                    <p>We make AI simple and practical: how it works, where it's used, and how to turn your new skills into value. Every week includes an activity or mini‑project. By the end, you'll ship a small AI project you can showcase or sell.</p>
                     <div class="pill-grid">
                         <span class="pill">AI fundamentals</span>
                         <span class="pill">Hands‑on demos</span>
@@ -531,59 +574,214 @@
                 <div class="card">
                     <h3>Week 1 Sample</h3>
                     <ul class="checklist">
-                        <li>What AI is (and isn’t)</li>
+                        <li>What AI is (and isn't)</li>
                         <li>AI in daily life</li>
                         <li>How machines learn (no math)</li>
-                        <li>Interactive: “Spot the AI”</li>
+                        <li>Interactive: "Spot the AI"</li>
                     </ul>
                     <p class="fine">Next week: train a tiny model with Google Teachable Machine.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ====== Syllabus ====== -->
-        <section id="syllabus" class="section alt">
+        <!-- ====== Course Links ====== -->
+        <section class="section alt">
             <div class="container">
-                <h2>8‑Week Syllabus</h2>
+                <h2 class="center">Explore Our AI Courses</h2>
+                <p class="center lead">Each course is designed for different experience levels and career goals</p>
+                
+                <div class="course-links">
+                    <a href="#ai-for-everyone" class="course-link">
+                        <div class="course-icon">👥</div>
+                        <h3>AI for Everyone</h3>
+                        <p>No coding experience needed. Perfect for beginners who want to understand AI fundamentals.</p>
+                        <div class="btn small mt-12">View Syllabus</div>
+                    </a>
+                    
+                    <a href="#ai-for-engineering" class="course-link">
+                        <div class="course-icon">⚙️</div>
+                        <h3>AI for Engineering</h3>
+                        <p>For developers who want to build AI-powered applications and integrate AI into their projects.</p>
+                        <div class="btn small mt-12">View Syllabus</div>
+                    </a>
+                    
+                    <a href="#ai-for-business" class="course-link">
+                        <div class="course-icon">💼</div>
+                        <h3>AI for Business</h3>
+                        <p>For professionals and leaders who want to leverage AI for business growth and optimization.</p>
+                        <div class="btn small mt-12">View Syllabus</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== AI for Everyone Syllabus ====== -->
+        <section id="ai-for-everyone" class="section">
+            <div class="container">
+                <div class="course-header">
+                    <h2 class="mb-0">AI for Everyone</h2>
+                    <div class="course-meta">
+                        <span class="tag">Beginner</span>
+                        <span class="tag">No Code</span>
+                        <span class="tag">8 Weeks</span>
+                    </div>
+                </div>
+                
+                <p>Perfect for absolute beginners. No technical background required. Learn how AI works and how to use AI tools effectively.</p>
+                
                 <div class="syllabus">
                     <article class="sy-card">
-                        <h3>Week 1 · Intro to AI</h3>
-                        <p>AI basics, everyday examples, how machines learn from data.</p>
+                        <h3>Week 1 · AI Fundamentals</h3>
+                        <p>What is AI, history of AI, types of AI, AI in everyday life, demystifying AI terminology.</p>
                     </article>
                     <article class="sy-card">
-                        <h3>Week 2 · Data & Demos</h3>
-                        <p>Data quality, train your first image model (no code).</p>
+                        <h3>Week 2 · How AI Learns</h3>
+                        <p>Machine learning basics, training vs inference, data importance, supervised vs unsupervised learning.</p>
                     </article>
                     <article class="sy-card">
-                        <h3>Week 3 · ML Concepts</h3>
-                        <p>Patterns, supervised vs. unsupervised, Project #1.</p>
+                        <h3>Week 3 · AI Tools & Applications</h3>
+                        <p>Popular AI tools overview, chatbots, image generators, practical applications for daily tasks.</p>
                     </article>
                     <article class="sy-card">
-                        <h3>Week 4 · Neural Nets</h3>
-                        <p>Layers & intuition, interactive visualizers, prompts.</p>
+                        <h3>Week 4 · Prompt Engineering</h3>
+                        <p>Crafting effective prompts, iterative refinement, context setting, output formatting techniques.</p>
                     </article>
                     <article class="sy-card">
-                        <h3>Week 5 · Text & Images</h3>
-                        <p>NLP with ChatGPT, computer vision basics, content tasks.</p>
+                        <h3>Week 5 · Computer Vision Basics</h3>
+                        <p>Image recognition, object detection, facial recognition, practical applications.</p>
                     </article>
                     <article class="sy-card">
-                        <h3>Week 6 · Ethics & Safety</h3>
-                        <p>Bias, responsible use, real‑world guardrails.</p>
+                        <h3>Week 6 · Natural Language Processing</h3>
+                        <p>How AI understands language, sentiment analysis, text generation, translation tools.</p>
                     </article>
                     <article class="sy-card">
-                        <h3>Week 7 · Capstone Build</h3>
-                        <p>Choose: chatbot, classifier, or content generator.</p>
+                        <h3>Week 7 · AI Ethics & Limitations</h3>
+                        <p>Bias in AI, privacy concerns, ethical use, current limitations, future implications.</p>
                     </article>
                     <article class="sy-card">
-                        <h3>Week 8 · Showcase & Next</h3>
-                        <p>Presentations, feedback, how to keep learning & earning.</p>
+                        <h3>Week 8 · Your AI Future</h3>
+                        <p>Staying updated with AI, learning resources, career opportunities, final project showcase.</p>
                     </article>
+                </div>
+                
+                <div class="center mt-18">
+                    <a href="#pricing" class="btn">Enroll in AI for Everyone</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== AI for Engineering Syllabus ====== -->
+        <section id="ai-for-engineering" class="section alt">
+            <div class="container">
+                <div class="course-header">
+                    <h2 class="mb-0">AI for Engineering</h2>
+                    <div class="course-meta">
+                        <span class="tag">Intermediate</span>
+                        <span class="tag">Coding</span>
+                        <span class="tag">8 Weeks</span>
+                    </div>
+                </div>
+                
+                <p>For developers and technical professionals. Learn to build AI applications and integrate AI APIs into your projects.</p>
+                
+                <div class="syllabus">
+                    <article class="sy-card">
+                        <h3>Week 1 · AI Development Basics</h3>
+                        <p>Setting up AI development environment, Python for AI, essential libraries (NumPy, Pandas).</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 2 · Working with AI APIs</h3>
+                        <p>OpenAI API, Google AI APIs, authentication, making API calls, handling responses.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 3 · Building Chat Applications</h3>
+                        <p>Conversational AI, chatbot development, context management, conversation memory.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 4 · Image Generation & Processing</h3>
+                        <p>DALL-E, Stable Diffusion, image processing APIs, creating visual content programmatically.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 5 · Natural Language Processing</h3>
+                        <p>Text analysis, sentiment detection, named entity recognition, text summarization.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 6 · AI-Powered Automation</h3>
+                        <p>Workflow automation, document processing, data extraction, task automation with AI.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 7 · Deploying AI Applications</h3>
+                        <p>Model deployment, cloud AI services, containerization, scaling AI applications.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 8 · Capstone Project</h3>
+                        <p>End-to-end AI application development, integration, testing, and deployment.</p>
+                    </article>
+                </div>
+                
+                <div class="center mt-18">
+                    <a href="#pricing" class="btn">Enroll in AI for Engineering</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== AI for Business Syllabus ====== -->
+        <section id="ai-for-business" class="section">
+            <div class="container">
+                <div class="course-header">
+                    <h2 class="mb-0">AI for Business</h2>
+                    <div class="course-meta">
+                        <span class="tag">Business</span>
+                        <span class="tag">Strategy</span>
+                        <span class="tag">8 Weeks</span>
+                    </div>
+                </div>
+                
+                <p>For professionals, managers, and entrepreneurs. Learn how to leverage AI for business growth, efficiency, and innovation.</p>
+                
+                <div class="syllabus">
+                    <article class="sy-card">
+                        <h3>Week 1 · AI Business Fundamentals</h3>
+                        <p>AI in business context, competitive advantage, industry applications, ROI calculation.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 2 · AI Strategy Development</h3>
+                        <p>Creating AI strategy, identifying opportunities, resource allocation, implementation roadmap.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 3 · AI for Marketing & Sales</h3>
+                        <p>Personalization, customer segmentation, chatbots for sales, predictive analytics.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 4 · AI in Operations</h3>
+                        <p>Process automation, supply chain optimization, predictive maintenance, resource allocation.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 5 · AI for Customer Experience</h3>
+                        <p>Customer service automation, sentiment analysis, personalized experiences, feedback analysis.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 6 · Data-Driven Decision Making</h3>
+                        <p>Business intelligence with AI, predictive analytics, data visualization, KPI tracking.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 7 · Implementing AI Solutions</h3>
+                        <p>Vendor selection, implementation planning, change management, training teams.</p>
+                    </article>
+                    <article class="sy-card">
+                        <h3>Week 8 · AI Leadership & Ethics</h3>
+                        <p>AI governance, ethical considerations, future trends, building AI-ready culture.</p>
+                    </article>
+                </div>
+                
+                <div class="center mt-18">
+                    <a href="#pricing" class="btn">Enroll in AI for Business</a>
                 </div>
             </div>
         </section>
 
         <!-- ====== Projects ====== -->
-        <section id="projects" class="section">
+        <section id="projects" class="section alt">
             <div class="container two-col">
                 <div>
                     <h2>Practical projects</h2>
@@ -607,7 +805,7 @@
         </section>
 
         <!-- ====== Pricing ====== -->
-        <section id="pricing" class="section alt">
+        <section id="pricing" class="section">
             <div class="container">
                 <h2>Pricing</h2>
                 <div class="price-grid">
@@ -648,7 +846,7 @@
         </section>
 
         <!-- ====== FAQ ====== -->
-        <section id="faq" class="section">
+        <section id="faq" class="section alt">
             <div class="container">
                 <h2>FAQ</h2>
                 <details>
@@ -671,7 +869,7 @@
         </section>
 
         <!-- ====== Apply ====== -->
-        <section id="apply" class="section alt">
+        <section id="apply" class="section">
             <div class="container two-col">
                 <div>
                     <h2>Apply now</h2>
