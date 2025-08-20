@@ -1,1 +1,0 @@
-console.log('Learn & Earn AI site loaded');
