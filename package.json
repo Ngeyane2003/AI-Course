@@ -1,0 +1,6 @@
+{
+  "name": "learn-earn-ai",
+  "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3"
+  }
+}
