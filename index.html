@@ -214,6 +214,25 @@
             flex-direction: column;
             transition: all 0.3s;
             margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(122, 162, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .price-card:hover::before {
+            opacity: 1;
         }
         
         .price-card:hover {
@@ -225,6 +244,10 @@
             outline: 2px solid var(--accent);
             box-shadow: 0 15px 40px rgba(122, 162, 255, 0.25);
             transform: scale(1.03);
+        }
+        
+        .price-card.highlight::before {
+            opacity: 1;
         }
         
         .price-card.highlight:hover {
@@ -574,17 +597,35 @@
             padding: 30px;
             margin: 40px 0;
             border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bundle-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(122, 162, 255, 0.1) 0%, transparent 70%);
+            opacity: 0.5;
+            pointer-events: none;
         }
         
         .bundle-header {
             text-align: center;
             margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
         }
         
         .bundle-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 25px;
+            position: relative;
+            z-index: 2;
         }
         
         @media (max-width: 768px) {
@@ -625,6 +666,123 @@
         .syllabus-content {
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        /* New styles for course cards */
+        .course-card {
+            background: rgba(14, 20, 36, 0.5);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(122, 162, 255, 0.1) 0%, transparent 70%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .course-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .course-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @media (max-width: 1000px) {
+            .course-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .course-option {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-option::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(122, 162, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .course-option:hover::before {
+            opacity: 1;
+        }
+        
+        .course-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .course-option.highlight {
+            outline: 2px solid var(--accent);
+            box-shadow: 0 15px 40px rgba(122, 162, 255, 0.25);
+            transform: scale(1.03);
+        }
+        
+        .course-option.highlight::before {
+            opacity: 1;
+        }
+        
+        .course-option.highlight:hover {
+            transform: scale(1.03) translateY(-5px);
+        }
+        
+        .course-option .price {
+            font-size: 42px;
+            margin: 16px 0 10px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .course-icon-large {
+            font-size: 60px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .course-title {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .course-subtitle {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -782,19 +940,18 @@
                         </div>
                     </div>
 
-                    <!-- Individual Courses -->
-                    <div style="margin-top: 60px;">
-                        <h2 class="center">Individual Courses</h2>
-                        <p class="center lead">Choose the course that matches your goals and experience level</p>
-                        
-                        <div class="grid" style="margin-top: 40px; gap: 30px;">
+                    <!-- Individual Courses - Restyled -->
+                    <div class="course-card">
+                        <div class="course-header">
+                            <h2>Individual Courses</h2>
+                            <p class="lead">Choose the course that matches your goals and experience level</p>
+                        </div>
+                        <div class="course-options">
                             <!-- AI for Everyone -->
-                            <div class="price-card">
-                                <div style="text-align: center; margin-bottom: 20px;">
-                                    <div style="font-size: 48px; margin-bottom: 15px;">👥</div>
-                                    <h3>AI for Everyone</h3>
-                                    <p style="color: var(--muted);">No coding experience needed</p>
-                                </div>
+                            <div class="course-option">
+                                <div class="course-icon-large">👥</div>
+                                <h3 class="course-title">AI for Everyone</h3>
+                                <p class="course-subtitle">No coding experience needed</p>
                                 <div class="price">$197 <span>one-time payment</span></div>
                                 <ul class="bullets">
                                     <li>Perfect for absolute beginners</li>
@@ -812,12 +969,10 @@
                             </div>
 
                             <!-- AI for Engineering -->
-                            <div class="price-card">
-                                <div style="text-align: center; margin-bottom: 20px;">
-                                    <div style="font-size: 48px; margin-bottom: 15px;">⚙️</div>
-                                    <h3>AI for Engineering</h3>
-                                    <p style="color: var(--muted);">For developers and engineers</p>
-                                </div>
+                            <div class="course-option highlight">
+                                <div class="course-icon-large">⚙️</div>
+                                <h3 class="course-title">AI for Engineering</h3>
+                                <p class="course-subtitle">For developers and engineers</p>
                                 <div class="price">$297 <span>one-time payment</span></div>
                                 <ul class="bullets">
                                     <li>API integration and development</li>
@@ -835,12 +990,10 @@
                             </div>
 
                             <!-- AI for Business -->
-                            <div class="price-card">
-                                <div style="text-align: center; margin-bottom: 20px;">
-                                    <div style="font-size: 48px; margin-bottom: 15px;">💼</div>
-                                    <h3>AI for Business</h3>
-                                    <p style="color: var(--muted);">For professionals and leaders</p>
-                                </div>
+                            <div class="course-option">
+                                <div class="course-icon-large">💼</div>
+                                <h3 class="course-title">AI for Business</h3>
+                                <p class="course-subtitle">For professionals and leaders</p>
                                 <div class="price">$247 <span>one-time payment</span></div>
                                 <ul class="bullets">
                                     <li>Business strategy implementation</li>
