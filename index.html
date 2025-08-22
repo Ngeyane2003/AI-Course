@@ -1442,6 +1442,165 @@
         document.querySelectorAll('.course-link, details, .price-card').forEach(el => {
             observer.observe(el);
         });
+
+        // Initialize PayPal buttons for landing page
+function initLandingPayPalButtons() {
+    // Starter Bundle
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return fetch('/api/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    value: '397.00',
+                    description: 'AI Starter Bundle (Everyone + Business)'
+                })
+            }).then(res => res.json())
+                .then(order => order.id);
+        },
+        onApprove: function(data, actions) {
+            return fetch('/api/capture-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    orderID: data.orderID
+                })
+            }).then(res => res.json())
+                .then(details => {
+                    showPaymentSuccess('AI Starter Bundle', details);
+                });
+        }
+    }).render('#paypal-button-starter-bundle-landing');
+
+    // Mastery Bundle
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return fetch('/api/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    value: '597.00',
+                    description: 'AI Mastery Bundle (All Three Courses)'
+                })
+            }).then(res => res.json())
+                .then(order => order.id);
+        },
+        onApprove: function(data, actions) {
+            return fetch('/api/capture-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    orderID: data.orderID
+                })
+            }).then(res => res.json())
+                .then(details => {
+                    showPaymentSuccess('AI Mastery Bundle', details);
+                });
+        }
+    }).render('#paypal-button-mastery-bundle-landing');
+
+    // Individual courses
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return fetch('/api/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    value: '197.00',
+                    description: 'AI for Everyone Course'
+                })
+            }).then(res => res.json())
+                .then(order => order.id);
+        },
+        onApprove: function(data, actions) {
+            return fetch('/api/capture-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    orderID: data.orderID
+                })
+            }).then(res => res.json())
+                .then(details => {
+                    showPaymentSuccess('AI for Everyone Course', details);
+                });
+        }
+    }).render('#paypal-button-ai-everyone-landing');
+
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return fetch('/api/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    value: '297.00',
+                    description: 'AI for Engineering Course'
+                })
+            }).then(res => res.json())
+                .then(order => order.id);
+        },
+        onApprove: function(data, actions) {
+            return fetch('/api/capture-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    orderID: data.orderID
+                })
+            }).then(res => res.json())
+                .then(details => {
+                    showPaymentSuccess('AI for Engineering Course', details);
+                });
+        }
+    }).render('#paypal-button-ai-engineering-landing');
+
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return fetch('/api/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    value: '247.00',
+                    description: 'AI for Business Course'
+                })
+            }).then(res => res.json())
+                .then(order => order.id);
+        },
+        onApprove: function(data, actions) {
+            return fetch('/api/capture-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    orderID: data.orderID
+                })
+            }).then(res => res.json())
+                .then(details => {
+                    showPaymentSuccess('AI for Business Course', details);
+                });
+        }
+    }).render('#paypal-button-ai-business-landing');
+}
+
+// Call this function when the page loads
+initLandingPayPalButtons();
     </script>
 </body>
 </html>
