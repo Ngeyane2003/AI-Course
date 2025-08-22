@@ -784,6 +784,81 @@
             color: var(--muted);
             margin-bottom: 20px;
         }
+
+        /* Compact course cards */
+        .compact-course-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .compact-course {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .compact-course::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(122, 162, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .compact-course:hover::before {
+            opacity: 1;
+        }
+        
+        .compact-course:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .compact-course-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .compact-course-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .compact-course-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 10px 0;
+        }
+        
+        .compact-course-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+        
+        @media (max-width: 900px) {
+            .compact-course-options {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -868,33 +943,42 @@
                 </div>
             </section>
 
-            <!-- ====== Course Links ====== -->
+            <!-- ====== Individual Courses ====== -->
             <section id="courses" class="section alt">
                 <div class="container">
-                    <h2 class="center">Explore Our AI Courses</h2>
+                    <h2 class="center">Individual Courses</h2>
                     <p class="center lead">Each course is designed for different experience levels and career goals</p>
                     
-                    <div class="course-links">
-                        <a href="javascript:void(0)" onclick="showSyllabus('ai-for-everyone')" class="course-link">
-                            <div class="course-icon">👥</div>
-                            <h3>AI for Everyone</h3>
-                            <p>No coding experience needed. Perfect for beginners who want to understand AI fundamentals.</p>
-                            <div class="btn small mt-12">View Syllabus</div>
-                        </a>
+                    <div class="compact-course-options">
+                        <div class="compact-course">
+                            <div class="compact-course-icon">👥</div>
+                            <h3 class="compact-course-title">AI for Everyone</h3>
+                            <div class="compact-course-price">$197</div>
+                            <p class="compact-course-desc">No coding experience needed. Perfect for beginners.</p>
+                            <a href="javascript:void(0)" onclick="showSyllabus('ai-for-everyone')" class="btn small block">
+                                <i class="fas fa-book-open"></i> View Syllabus
+                            </a>
+                        </div>
                         
-                        <a href="javascript:void(0)" onclick="showSyllabus('ai-for-engineering')" class="course-link">
-                            <div class="course-icon">⚙️</div>
-                            <h3>AI for Engineering</h3>
-                            <p>For developers who want to build AI-powered applications and integrate AI into their projects.</p>
-                            <div class="btn small mt-12">View Syllabus</div>
-                        </a>
+                        <div class="compact-course">
+                            <div class="compact-course-icon">⚙️</div>
+                            <h3 class="compact-course-title">AI for Engineering</h3>
+                            <div class="compact-course-price">$297</div>
+                            <p class="compact-course-desc">For developers who want to build AI-powered applications.</p>
+                            <a href="javascript:void(0)" onclick="showSyllabus('ai-for-engineering')" class="btn small block">
+                                <i class="fas fa-book-open"></i> View Syllabus
+                            </a>
+                        </div>
                         
-                        <a href="javascript:void(0)" onclick="showSyllabus('ai-for-business')" class="course-link">
-                            <div class="course-icon">💼</div>
-                            <h3>AI for Business</h3>
-                            <p>For professionals and leaders who want to leverage AI for business growth and optimization.</p>
-                            <div class="btn small mt-12">View Syllabus</div>
-                        </a>
+                        <div class="compact-course">
+                            <div class="compact-course-icon">💼</div>
+                            <h3 class="compact-course-title">AI for Business</h3>
+                            <div class="compact-course-price">$247</div>
+                            <p class="compact-course-desc">For professionals who want to leverage AI for business growth.</p>
+                            <a href="javascript:void(0)" onclick="showSyllabus('ai-for-business')" class="btn small block">
+                                <i class="fas fa-book-open"></i> View Syllabus
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1910,7 +1994,7 @@
                             description: 'AI for Business Course'
                         })
                     }).then(res => res.json())
-                        .then(order => order.id);
+                        .than(order => order.id);
                 },
                 onApprove: function(data, actions) {
                     return fetch('/api/capture-order', {
