@@ -70,33 +70,47 @@
         <p class="disclaimer">Remember to refund this test payment after verifying it works.</p>
     </div>
 
-    <script>
-        // Replace with your Live Client ID
-        const YOUR_CLIENT_ID = 'ECdTb41Q3YVQwgNi6Bz80dzTBhcOzcxGLde30L3n2p01EdIV2jfRgg9LCQEUzKmPEFBvmnS650-rxaak';
-        
-        // Initialize PayPal button
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '1.00'
-                        },
-                        description: 'Test Payment - $1'
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
+   <script>
+    // Replace with your Live Client ID
+    const YOUR_CLIENT_ID = 'ECdTb41Q3YVQwgNi6Bz80dzTBhcOzcxGLde30L3n2p01EdIV2jfRgg9LCQEUzKmPEFBvmnS650-rxaak';
+    
+    // Initialize PayPal button with SERVER-SIDE calls
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            // Call your Vercel serverless function
+            return fetch('/api/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    value: '1.00',
+                    description: 'Test Payment - $1'
+                })
+            }).then(res => res.json())
+                .then(order => order.id);
+        },
+        onApprove: function(data, actions) {
+            // Call your Vercel serverless function
+            return fetch('/api/capture-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    orderID: data.orderID
+                })
+            }).then(res => res.json())
+                .then(details) => {
                     alert('Test payment successful! Transaction ID: ' + details.id);
                     console.log('Payment details:', details);
                 });
-            },
-            onError: function(err) {
-                console.error('PayPal error:', err);
-                alert('Payment failed. Check console for details.');
-            }
-        }).render('#paypal-test-button');
-    </script>
+        },
+        onError: function(err) {
+            console.error('PayPal error:', err);
+            alert('Payment failed. Check console for details.');
+        }
+    }).render('#paypal-test-button');
+</script>
 </body>
 </html>
