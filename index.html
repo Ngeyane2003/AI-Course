@@ -4,17 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$1 Test Payment</title>
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=ECdTb41Q3YVQwgNi6Bz80dzTBhcOzcxGLde30L3n2p01EdIV2jfRgg9LCQEUzKmPEFBvmnS650-rxaak&currency=USD"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 0;
             padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #003087;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            max-width: 600px;
         }
         
         .test-container {
@@ -23,8 +44,9 @@
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            max-width: 400px;
+            max-width: 500px;
             width: 100%;
+            margin-bottom: 30px;
         }
         
         h2 {
@@ -44,10 +66,14 @@
         }
         
         .test-amount {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             color: #28a745;
             margin: 15px 0;
+            padding: 10px;
+            border: 2px dashed #28a745;
+            border-radius: 8px;
+            display: inline-block;
         }
         
         .disclaimer {
@@ -56,9 +82,69 @@
             margin-top: 20px;
             font-style: italic;
         }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #0070ba;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border: 1px solid #0070ba;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #0070ba;
+            color: white;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .debug-info {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: left;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .debug-toggle {
+            color: #0070ba;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 15px;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>PayPal Integration Test</h1>
+        <p>Test your PayPal integration with a $1 payment. Make sure your serverless functions are properly set up.</p>
+    </div>
+    
     <div class="test-container">
         <h2>Test Payment</h2>
         <p>Use this button to test your live PayPal integration with a small $1 payment.</p>
@@ -67,50 +153,125 @@
         
         <div id="paypal-test-button" class="paypal-buttons"></div>
         
+        <div id="status-message" class="status"></div>
+        
         <p class="disclaimer">Remember to refund this test payment after verifying it works.</p>
+        
+        <a href="/" class="back-link">← Back to Homepage</a>
+        
+        <div class="debug-toggle" onclick="toggleDebug()">Toggle Debug Info</div>
+        
+        <div id="debug-info" class="debug-info">
+            <h3>Debug Information:</h3>
+            <p><strong>API Endpoints:</strong></p>
+            <ul>
+                <li>POST /api/create-order</li>
+                <li>POST /api/capture-order</li>
+            </ul>
+            <p><strong>Client ID:</strong> ECdTb41Q3YVQwgNi6Bz80dzTBhcOzcxGLde30L3n2p01EdIV2jfRgg9LCQEUzKmPEFBvmnS650-rxaak</p>
+            <p><strong>Note:</strong> This test will only work if your serverless functions are properly configured on Vercel.</p>
+        </div>
     </div>
 
-   <script>
-    // Replace with your Live Client ID
+    <script>
+    // Your Live Client ID
     const YOUR_CLIENT_ID = 'ECdTb41Q3YVQwgNi6Bz80dzTBhcOzcxGLde30L3n2p01EdIV2jfRgg9LCQEUzKmPEFBvmnS650-rxaak';
     
-    // Initialize PayPal button with SERVER-SIDE calls
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            // Call your Vercel serverless function
-            return fetch('/api/create-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    value: '1.00',
-                    description: 'Test Payment - $1'
+    // DOM elements
+    const statusMessage = document.getElementById('status-message');
+    const debugInfo = document.getElementById('debug-info');
+    
+    // Toggle debug info
+    function toggleDebug() {
+        debugInfo.style.display = debugInfo.style.display === 'block' ? 'none' : 'block';
+    }
+    
+    // Show status message
+    function showStatus(message, isSuccess) {
+        statusMessage.textContent = message;
+        statusMessage.className = isSuccess ? 'status success' : 'status error';
+        statusMessage.style.display = 'block';
+    }
+    
+    // Check if PayPal SDK loaded correctly
+    if (typeof paypal === 'undefined') {
+        showStatus('Error: PayPal SDK failed to load. Check your client ID.', false);
+    } else {
+        // Initialize PayPal button with SERVER-SIDE calls
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                showStatus('Creating payment order...', true);
+                
+                // Call your Vercel serverless function
+                return fetch('/api/create-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        value: '1.00',
+                        description: 'Test Payment - $1'
+                    })
+                }).then(res => {
+                    if (!res.ok) {
+                        throw new Error(`Server responded with status: ${res.status}`);
+                    }
+                    return res.json();
                 })
-            }).then(res => res.json())
-                .then(order => order.id);
-        },
-        onApprove: function(data, actions) {
-            // Call your Vercel serverless function
-            return fetch('/api/capture-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    orderID: data.orderID
+                .then(order => {
+                    if (!order || !order.id) {
+                        throw new Error('Invalid response from server: Missing order ID');
+                    }
+                    showStatus('Order created successfully. Redirecting to PayPal...', true);
+                    return order.id;
                 })
-            }).then(res => res.json())
-                .then(details) => {
-                    alert('Test payment successful! Transaction ID: ' + details.id);
-                    console.log('Payment details:', details);
+                .catch(error => {
+                    console.error('Error creating order:', error);
+                    showStatus('Failed to create payment order: ' + error.message, false);
+                    // Re-throw to prevent the button from proceeding
+                    throw error;
                 });
-        },
-        onError: function(err) {
-            console.error('PayPal error:', err);
-            alert('Payment failed. Check console for details.');
-        }
-    }).render('#paypal-test-button');
-</script>
+            },
+            onApprove: function(data, actions) {
+                showStatus('Processing payment...', true);
+                
+                // Call your Vercel serverless function
+                return fetch('/api/capture-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        orderID: data.orderID
+                    })
+                }).then(res => {
+                    if (!res.ok) {
+                        throw new Error(`Server responded with status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .then(details => {
+                    console.log('Payment details:', details);
+                    showStatus('Test payment successful! Transaction ID: ' + details.id, true);
+                    
+                    // You could redirect to a success page here if needed
+                    // window.location.href = '/payment-success';
+                })
+                .catch(error => {
+                    console.error('Error capturing order:', error);
+                    showStatus('Payment failed: ' + error.message, false);
+                });
+            },
+            onError: function(err) {
+                console.error('PayPal error:', err);
+                showStatus('There was an error with the payment. Please try again.', false);
+            },
+            onCancel: function(data) {
+                console.log('Payment cancelled by user', data);
+                showStatus('Payment was cancelled.', false);
+            }
+        }).render('#paypal-test-button');
+    }
+    </script>
 </body>
 </html>
