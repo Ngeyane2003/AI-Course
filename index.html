@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn & Earn AI — Courses & Bundle</title>
+    <!-- Updated with your LIVE Client ID -->
     <script src="https://www.paypal.com/sdk/js?client-id=ECdTb41Q3YVQwgNi6Bz80dzTBhcOzcxGLde30L3n2p01EdIV2jfRgg9LCQEUzKmPEFBvmnS650-rxaak&currency=USD"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Your existing CSS remains exactly the same */
         :root {
             --bg: #0b0f19;
             --bg-alt: #0e1424;
@@ -26,11 +28,15 @@
             padding: 0;
         }
         
+        /* ... (all your existing CSS styles remain exactly the same) ... */
+        
     </style>
 </head>
 <body>
     <!-- ====== Main Landing Page ====== -->
     <div id="landing-page">
+        <!-- Your existing HTML structure remains exactly the same -->
+        
         <!-- ====== Bundle Offer ====== -->
         <section class="section">
             <div class="container">
@@ -74,6 +80,8 @@
             </div>
         </section>
 
+        <!-- Rest of your HTML remains exactly the same -->
+
     </div>
 
     <!-- ====== Syllabus Pages ====== -->
@@ -91,6 +99,7 @@
     <!-- AI for Engineering Syllabus -->
     <div id="ai-for-engineering" class="syllabus-page">
         <div class="container">
+            <!-- Syllabus content remains the same -->
             <div class="center mt-24">
                 <div id="paypal-button-ai-engineering" class="paypal-buttons"></div>
             </div>
@@ -100,6 +109,7 @@
     <!-- AI for Business Syllabus -->
     <div id="ai-for-business" class="syllabus-page">
         <div class="container">
+            <!-- Syllabus content remains the same -->
             <div class="center mt-24">
                 <div id="paypal-button-ai-business" class="paypal-buttons"></div>
             </div>
@@ -107,6 +117,7 @@
     </div>
 
     <script>
+        // Mobile nav toggle and other functions remain the same
         
         // Initialize PayPal buttons with SERVER-SIDE API calls
         function initPayPalButtons(courseId) {
@@ -138,7 +149,7 @@
                     // Bundle buttons with SERVER-SIDE calls
                     paypal.Buttons({
                         createOrder: function(data, actions) {
-                            // Call Vercel serverless function
+                            // Call your Vercel serverless function
                             return fetch('/api/create-order', {
                                 method: 'POST',
                                 headers: {
@@ -152,7 +163,7 @@
                                 .then(order => order.id);
                         },
                         onApprove: function(data, actions) {
-                            // Call Vercel serverless function
+                            // Call your Vercel serverless function
                             return fetch('/api/capture-order', {
                                 method: 'POST',
                                 headers: {
@@ -170,7 +181,7 @@
 
                     paypal.Buttons({
                         createOrder: function(data, actions) {
-                            // Call Vercel serverless function
+                            // Call your Vercel serverless function
                             return fetch('/api/create-order', {
                                 method: 'POST',
                                 headers: {
@@ -184,7 +195,7 @@
                                 .then(order => order.id);
                         },
                         onApprove: function(data, actions) {
-                            // Call Vercel serverless function
+                            // Call your Vercel serverless function
                             return fetch('/api/capture-order', {
                                 method: 'POST',
                                 headers: {
@@ -205,7 +216,7 @@
             // Individual course buttons with SERVER-SIDE calls
             paypal.Buttons({
                 createOrder: function(data, actions) {
-                    // Call Vercel serverless function
+                    // Call your Vercel serverless function
                     return fetch('/api/create-order', {
                         method: 'POST',
                         headers: {
@@ -219,7 +230,7 @@
                         .then(order => order.id);
                 },
                 onApprove: function(data, actions) {
-                    // Call Vercel serverless function
+                    // Call your Vercel serverless function
                     return fetch('/api/capture-order', {
                         method: 'POST',
                         headers: {
@@ -264,6 +275,8 @@
 
         // Initialize buttons when page loads
         initPayPalButtons();
+
+        // ... rest of your JavaScript remains the same
     </script>
 </body>
 </html>
