@@ -380,6 +380,43 @@
             margin-bottom: 0;
         }
         
+        /* Syllabus Pages */
+        .syllabus-page {
+            display: none;
+            padding: 100px 0;
+            min-height: 100vh;
+        }
+        
+        #landing-page {
+            display: block;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+        
+        .course-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(122, 162, 255, 0.1);
+            border-radius: 50%;
+        }
+        
         /* Responsive Design */
         @media (max-width: 900px) {
             .hero-grid {
@@ -475,7 +512,7 @@
             }
         }
 
-        /* Additional components from your original design */
+        /* Additional components */
         .pill-grid {
             display: flex;
             flex-wrap: wrap;
@@ -554,6 +591,40 @@
             .bundle-options {
                 grid-template-columns: 1fr;
             }
+        }
+
+        /* Week cards for syllabus */
+        .week-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 24px;
+        }
+        
+        .week-card h3 {
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+        }
+        
+        .week-card ul {
+            padding-left: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .week-card li {
+            margin: 10px 0;
+        }
+        
+        .syllabus-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .syllabus-content {
+            max-width: 900px;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -671,178 +742,7 @@
             </section>
 
             <!-- ====== Courses Landing Page ====== -->
-<section id="courses-landing" class="section">
-    <div class="container">
-        <div class="bundle-container">
-            <div class="bundle-header">
-                <h2>Save With Our Course Bundles</h2>
-                <p class="lead">Get multiple courses at a discounted rate</p>
-            </div>
-            <div class="bundle-options">
-                <div class="price-card">
-                    <h3>AI Starter Bundle</h3>
-                    <p>AI for Everyone + AI for Business</p>
-                    <div class="price">$397 <span>one-time payment</span></div>
-                    <div class="savings">Save $47 compared to buying separately</div>
-                    <ul class="bullets">
-                        <li>Both courses</li>
-                        <li>Beginner to business level</li>
-                        <li>Comprehensive AI knowledge</li>
-                        <li>Lifetime access to updates</li>
-                    </ul>
-                    <div id="paypal-button-starter-bundle-landing" class="paypal-buttons"></div>
-                </div>
-
-                <div class="price-card highlight">
-                    <div class="badge">BEST VALUE</div>
-                    <h3>AI Mastery Bundle</h3>
-                    <p>All Three Courses: Everyone + Engineering + Business</p>
-                    <div class="price">$597 <span>one-time payment</span></div>
-                    <div class="savings">Save $144 compared to buying separately</div>
-                    <ul class="bullets">
-                        <li>All three courses</li>
-                        <li>Complete AI education</li>
-                        <li>Technical and business perspectives</li>
-                        <li>Lifetime access to updates</li>
-                        <li>Premium support</li>
-                    </ul>
-                    <div id="paypal-button-mastery-bundle-landing" class="paypal-buttons"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Individual Courses -->
-        <div style="margin-top: 60px;">
-            <h2 class="center">Individual Courses</h2>
-            <p class="center lead">Choose the course that matches your goals and experience level</p>
-            
-            <div class="grid" style="margin-top: 40px; gap: 30px;">
-                <!-- AI for Everyone -->
-                <div class="price-card">
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <div style="font-size: 48px; margin-bottom: 15px;">👥</div>
-                        <h3>AI for Everyone</h3>
-                        <p style="color: var(--muted);">No coding experience needed</p>
-                    </div>
-                    <div class="price">$197 <span>one-time payment</span></div>
-                    <ul class="bullets">
-                        <li>Perfect for absolute beginners</li>
-                        <li>No technical background required</li>
-                        <li>Hands-on projects with no-code tools</li>
-                        <li>8 weeks of comprehensive content</li>
-                        <li>Certificate of completion</li>
-                    </ul>
-                    <div style="margin-top: 25px;">
-                        <a href="javascript:void(0)" onclick="showSyllabus('ai-for-everyone')" class="btn block" style="margin-bottom: 10px;">
-                            <i class="fas fa-book-open"></i> View Detailed Syllabus
-                        </a>
-                        <div id="paypal-button-ai-everyone-landing" class="paypal-buttons"></div>
-                    </div>
-                </div>
-
-                <!-- AI for Engineering -->
-                <div class="price-card">
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <div style="font-size: 48px; margin-bottom: 15px;">⚙️</div>
-                        <h3>AI for Engineering</h3>
-                        <p style="color: var(--muted);">For developers and engineers</p>
-                    </div>
-                    <div class="price">$297 <span>one-time payment</span></div>
-                    <ul class="bullets">
-                        <li>API integration and development</li>
-                        <li>Python programming for AI</li>
-                        <li>Real-world coding projects</li>
-                        <li>8 weeks of advanced content</li>
-                        <li>Developer certificate</li>
-                    </ul>
-                    <div style="margin-top: 25px;">
-                        <a href="javascript:void(0)" onclick="showSyllabus('ai-for-engineering')" class="btn block" style="margin-bottom: 10px;">
-                            <i class="fas fa-book-open"></i> View Detailed Syllabus
-                        </a>
-                        <div id="paypal-button-ai-engineering-landing" class="paypal-buttons"></div>
-                    </div>
-                </div>
-
-                <!-- AI for Business -->
-                <div class="price-card">
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <div style="font-size: 48px; margin-bottom: 15px;">💼</div>
-                        <h3>AI for Business</h3>
-                        <p style="color: var(--muted);">For professionals and leaders</p>
-                    </div>
-                    <div class="price">$247 <span>one-time payment</span></div>
-                    <ul class="bullets">
-                        <li>Business strategy implementation</li>
-                        <li>ROI calculation and analysis</li>
-                        <li>Case studies and real examples</li>
-                        <li>8 weeks of executive content</li>
-                        <li>Business leadership certificate</li>
-                    </ul>
-                    <div style="margin-top: 25px;">
-                        <a href="javascript:void(0)" onclick="showSyllabus('ai-for-business')" class="btn block" style="margin-bottom: 10px;">
-                            <i class="fas fa-book-open"></i> View Detailed Syllabus
-                        </a>
-                        <div id="paypal-button-ai-business-landing" class="paypal-buttons"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Comparison Table -->
-        <div style="margin-top: 60px;">
-            <h2 class="center">Course Comparison</h2>
-            <div class="card" style="margin-top: 30px;">
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left; padding: 15px; border-bottom: 2px solid var(--border);">Feature</th>
-                                <th style="text-align: center; padding: 15px; border-bottom: 2px solid var(--border);">Everyone</th>
-                                <th style="text-align: center; padding: 15px; border-bottom: 2px solid var(--border);">Engineering</th>
-                                <th style="text-align: center; padding: 15px; border-bottom: 2px solid var(--border);">Business</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="padding: 15px; border-bottom: 1px solid var(--border);">Duration</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">8 weeks</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">8 weeks</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">8 weeks</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 15px; border-bottom: 1px solid var(--border);">Coding Required</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">No</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">Yes</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">No</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 15px; border-bottom: 1px solid var(--border);">Skill Level</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">Beginner</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">Intermediate</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">All Levels</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 15px; border-bottom: 1px solid var(--border);">Projects</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">5</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">7</td>
-                                <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">4</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 15px;">Certificate</td>
-                                <td style="text-align: center; padding: 15px;">Yes</td>
-                                <td style="text-align: center; padding: 15px;">Yes</td>
-                                <td style="text-align: center; padding: 15px;">Yes</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-            <!-- ====== Bundle Offer ====== -->
-            <section class="section">
+            <section id="courses-landing" class="section">
                 <div class="container">
                     <div class="bundle-container">
                         <div class="bundle-header">
@@ -861,7 +761,7 @@
                                     <li>Comprehensive AI knowledge</li>
                                     <li>Lifetime access to updates</li>
                                 </ul>
-                                <div id="paypal-button-starter-bundle" class="paypal-buttons"></div>
+                                <div id="paypal-button-starter-bundle-landing" class="paypal-buttons"></div>
                             </div>
 
                             <div class="price-card highlight">
@@ -877,7 +777,135 @@
                                     <li>Lifetime access to updates</li>
                                     <li>Premium support</li>
                                 </ul>
-                                <div id="paypal-button-mastery-bundle" class="paypal-buttons"></div>
+                                <div id="paypal-button-mastery-bundle-landing" class="paypal-buttons"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Individual Courses -->
+                    <div style="margin-top: 60px;">
+                        <h2 class="center">Individual Courses</h2>
+                        <p class="center lead">Choose the course that matches your goals and experience level</p>
+                        
+                        <div class="grid" style="margin-top: 40px; gap: 30px;">
+                            <!-- AI for Everyone -->
+                            <div class="price-card">
+                                <div style="text-align: center; margin-bottom: 20px;">
+                                    <div style="font-size: 48px; margin-bottom: 15px;">👥</div>
+                                    <h3>AI for Everyone</h3>
+                                    <p style="color: var(--muted);">No coding experience needed</p>
+                                </div>
+                                <div class="price">$197 <span>one-time payment</span></div>
+                                <ul class="bullets">
+                                    <li>Perfect for absolute beginners</li>
+                                    <li>No technical background required</li>
+                                    <li>Hands-on projects with no-code tools</li>
+                                    <li>8 weeks of comprehensive content</li>
+                                    <li>Certificate of completion</li>
+                                </ul>
+                                <div style="margin-top: 25px;">
+                                    <a href="javascript:void(0)" onclick="showSyllabus('ai-for-everyone')" class="btn block" style="margin-bottom: 10px;">
+                                        <i class="fas fa-book-open"></i> View Detailed Syllabus
+                                    </a>
+                                    <div id="paypal-button-ai-everyone-landing" class="paypal-buttons"></div>
+                                </div>
+                            </div>
+
+                            <!-- AI for Engineering -->
+                            <div class="price-card">
+                                <div style="text-align: center; margin-bottom: 20px;">
+                                    <div style="font-size: 48px; margin-bottom: 15px;">⚙️</div>
+                                    <h3>AI for Engineering</h3>
+                                    <p style="color: var(--muted);">For developers and engineers</p>
+                                </div>
+                                <div class="price">$297 <span>one-time payment</span></div>
+                                <ul class="bullets">
+                                    <li>API integration and development</li>
+                                    <li>Python programming for AI</li>
+                                    <li>Real-world coding projects</li>
+                                    <li>8 weeks of advanced content</li>
+                                    <li>Developer certificate</li>
+                                </ul>
+                                <div style="margin-top: 25px;">
+                                    <a href="javascript:void(0)" onclick="showSyllabus('ai-for-engineering')" class="btn block" style="margin-bottom: 10px;">
+                                        <i class="fas fa-book-open"></i> View Detailed Syllabus
+                                    </a>
+                                    <div id="paypal-button-ai-engineering-landing" class="paypal-buttons"></div>
+                                </div>
+                            </div>
+
+                            <!-- AI for Business -->
+                            <div class="price-card">
+                                <div style="text-align: center; margin-bottom: 20px;">
+                                    <div style="font-size: 48px; margin-bottom: 15px;">💼</div>
+                                    <h3>AI for Business</h3>
+                                    <p style="color: var(--muted);">For professionals and leaders</p>
+                                </div>
+                                <div class="price">$247 <span>one-time payment</span></div>
+                                <ul class="bullets">
+                                    <li>Business strategy implementation</li>
+                                    <li>ROI calculation and analysis</li>
+                                    <li>Case studies and real examples</li>
+                                    <li>8 weeks of executive content</li>
+                                    <li>Business leadership certificate</li>
+                                </ul>
+                                <div style="margin-top: 25px;">
+                                    <a href="javascript:void(0)" onclick="showSyllabus('ai-for-business')" class="btn block" style="margin-bottom: 10px;">
+                                        <i class="fas fa-book-open"></i> View Detailed Syllabus
+                                    </a>
+                                    <div id="paypal-button-ai-business-landing" class="paypal-buttons"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Table -->
+                    <div style="margin-top: 60px;">
+                        <h2 class="center">Course Comparison</h2>
+                        <div class="card" style="margin-top: 30px;">
+                            <div style="overflow-x: auto;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: left; padding: 15px; border-bottom: 2px solid var(--border);">Feature</th>
+                                            <th style="text-align: center; padding: 15px; border-bottom: 2px solid var(--border);">Everyone</th>
+                                            <th style="text-align: center; padding: 15px; border-bottom: 2px solid var(--border);">Engineering</th>
+                                            <th style="text-align: center; padding: 15px; border-bottom: 2px solid var(--border);">Business</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding: 15px; border-bottom: 1px solid var(--border);">Duration</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">8 weeks</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">8 weeks</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">8 weeks</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 15px; border-bottom: 1px solid var(--border);">Coding Required</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">No</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">Yes</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">No</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 15px; border-bottom: 1px solid var(--border);">Skill Level</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">Beginner</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">Intermediate</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">All Levels</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 15px; border-bottom: 1px solid var(--border);">Projects</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">5</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">7</td>
+                                            <td style="text-align: center; padding: 15px; border-bottom: 1px solid var(--border);">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 15px;">Certificate</td>
+                                            <td style="text-align: center; padding: 15px;">Yes</td>
+                                            <td style="text-align: center; padding: 15px;">Yes</td>
+                                            <td style="text-align: center; padding: 15px;">Yes</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -1592,8 +1620,164 @@
             });
         }
 
-        // Initialize buttons when page loads
-        initPayPalButtons();
+        // Initialize PayPal buttons for landing page
+        function initLandingPayPalButtons() {
+            // Starter Bundle
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return fetch('/api/create-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            value: '397.00',
+                            description: 'AI Starter Bundle (Everyone + Business)'
+                        })
+                    }).then(res => res.json())
+                        .then(order => order.id);
+                },
+                onApprove: function(data, actions) {
+                    return fetch('/api/capture-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            orderID: data.orderID
+                        })
+                    }).then(res => res.json())
+                        .then(details => {
+                            showPaymentSuccess('AI Starter Bundle', details);
+                        });
+                }
+            }).render('#paypal-button-starter-bundle-landing');
+
+            // Mastery Bundle
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return fetch('/api/create-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            value: '597.00',
+                            description: 'AI Mastery Bundle (All Three Courses)'
+                        })
+                    }).then(res => res.json())
+                        .then(order => order.id);
+                },
+                onApprove: function(data, actions) {
+                    return fetch('/api/capture-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            orderID: data.orderID
+                        })
+                    }).then(res => res.json())
+                        .then(details => {
+                            showPaymentSuccess('AI Mastery Bundle', details);
+                        });
+                }
+            }).render('#paypal-button-mastery-bundle-landing');
+
+            // Individual courses
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return fetch('/api/create-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            value: '197.00',
+                            description: 'AI for Everyone Course'
+                        })
+                    }).then(res => res.json())
+                        .then(order => order.id);
+                },
+                onApprove: function(data, actions) {
+                    return fetch('/api/capture-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            orderID: data.orderID
+                        })
+                    }).then(res => res.json())
+                        .then(details => {
+                            showPaymentSuccess('AI for Everyone Course', details);
+                        });
+                }
+            }).render('#paypal-button-ai-everyone-landing');
+
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return fetch('/api/create-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            value: '297.00',
+                            description: 'AI for Engineering Course'
+                        })
+                    }).then(res => res.json())
+                        .then(order => order.id);
+                },
+                onApprove: function(data, actions) {
+                    return fetch('/api/capture-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            orderID: data.orderID
+                        })
+                    }).then(res => res.json())
+                        .then(details => {
+                            showPaymentSuccess('AI for Engineering Course', details);
+                        });
+                }
+            }).render('#paypal-button-ai-engineering-landing');
+
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return fetch('/api/create-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            value: '247.00',
+                            description: 'AI for Business Course'
+                        })
+                    }).then(res => res.json())
+                        .then(order => order.id);
+                },
+                onApprove: function(data, actions) {
+                    return fetch('/api/capture-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            orderID: data.orderID
+                        })
+                    }).then(res => res.json())
+                        .then(details => {
+                            showPaymentSuccess('AI for Business Course', details);
+                        });
+                }
+            }).render('#paypal-button-ai-business-landing');
+        }
+
+        // Call this function when the page loads
+        initLandingPayPalButtons();
 
         // Animation on scroll
         const observerOptions = {
@@ -1613,165 +1797,6 @@
         document.querySelectorAll('.course-link, details, .price-card').forEach(el => {
             observer.observe(el);
         });
-
-        // Initialize PayPal buttons for landing page
-function initLandingPayPalButtons() {
-    // Starter Bundle
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return fetch('/api/create-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    value: '397.00',
-                    description: 'AI Starter Bundle (Everyone + Business)'
-                })
-            }).then(res => res.json())
-                .then(order => order.id);
-        },
-        onApprove: function(data, actions) {
-            return fetch('/api/capture-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    orderID: data.orderID
-                })
-            }).then(res => res.json())
-                .then(details => {
-                    showPaymentSuccess('AI Starter Bundle', details);
-                });
-        }
-    }).render('#paypal-button-starter-bundle-landing');
-
-    // Mastery Bundle
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return fetch('/api/create-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    value: '597.00',
-                    description: 'AI Mastery Bundle (All Three Courses)'
-                })
-            }).then(res => res.json())
-                .then(order => order.id);
-        },
-        onApprove: function(data, actions) {
-            return fetch('/api/capture-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    orderID: data.orderID
-                })
-            }).then(res => res.json())
-                .then(details => {
-                    showPaymentSuccess('AI Mastery Bundle', details);
-                });
-        }
-    }).render('#paypal-button-mastery-bundle-landing');
-
-    // Individual courses
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return fetch('/api/create-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    value: '197.00',
-                    description: 'AI for Everyone Course'
-                })
-            }).then(res => res.json())
-                .then(order => order.id);
-        },
-        onApprove: function(data, actions) {
-            return fetch('/api/capture-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    orderID: data.orderID
-                })
-            }).then(res => res.json())
-                .then(details => {
-                    showPaymentSuccess('AI for Everyone Course', details);
-                });
-        }
-    }).render('#paypal-button-ai-everyone-landing');
-
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return fetch('/api/create-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    value: '297.00',
-                    description: 'AI for Engineering Course'
-                })
-            }).then(res => res.json())
-                .then(order => order.id);
-        },
-        onApprove: function(data, actions) {
-            return fetch('/api/capture-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    orderID: data.orderID
-                })
-            }).then(res => res.json())
-                .then(details => {
-                    showPaymentSuccess('AI for Engineering Course', details);
-                });
-        }
-    }).render('#paypal-button-ai-engineering-landing');
-
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return fetch('/api/create-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    value: '247.00',
-                    description: 'AI for Business Course'
-                })
-            }).then(res => res.json())
-                .then(order => order.id);
-        },
-        onApprove: function(data, actions) {
-            return fetch('/api/capture-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    orderID: data.orderID
-                })
-            }).then(res => res.json())
-                .then(details => {
-                    showPaymentSuccess('AI for Business Course', details);
-                });
-        }
-    }).render('#paypal-button-ai-business-landing');
-}
-
-// Call this function when the page loads
-initLandingPayPalButtons();
     </script>
 </body>
 </html>
