@@ -1,6 +1,11 @@
 {
-  "name": "learn-earn-ai",
+  "name": "ai-academy",
+  "version": "1.0.0",
   "dependencies": {
     "@paypal/checkout-server-sdk": "^1.0.3"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Building...'"
   }
 }
