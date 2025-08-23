@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn & Earn AI — Courses & Bundle</title>
-    <script src="https://www.paypal.com/sdk/js?client-id=ECdTb41Q3YVQwgNi6Bz80dzTBhcOzcxGLde30L3n2p01EdIV2jfRgg9LCQEUzKmPEFBvmnS650-rxaak&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_ACTUAL_CLIENT_ID&currency=USD"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -422,6 +422,7 @@
             color: var(--accent);
             text-decoration: none;
             font-weight: 600;
+            cursor: pointer;
         }
         
         .back-btn:hover {
@@ -939,7 +940,7 @@
                             <li>Interactive: "Spot the AI"</li>
                         </ul>
                         <p class="fine">Next week: train a tiny model with Google Teachable Machine.</p>
-                    </div>
+                        </div>
                 </div>
             </section>
 
@@ -1994,7 +1995,7 @@
                             description: 'AI for Business Course'
                         })
                     }).then(res => res.json())
-                        .than(order => order.id);
+                        .then(order => order.id);
                 },
                 onApprove: function(data, actions) {
                     return fetch('/api/capture-order', {
