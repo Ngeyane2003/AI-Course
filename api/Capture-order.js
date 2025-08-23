@@ -16,6 +16,9 @@ function client() {
   return new paypal.core.PayPalHttpClient(environment());
 }
 
+// Simple in-memory storage for demo purposes (replace with database in production)
+const transactions = new Map();
+
 module.exports = async (req, res) => {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,31 +35,78 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { value, description } = req.body;
+    const { orderID } = req.body;
     
     // Validate input
-    if (!value || !description) {
-      return res.status(400).json({ error: 'Missing value or description' });
+    if (!orderID) {
+      return res.status(400).json({ error: 'Missing orderID' });
     }
 
-    const request = new paypal.orders.OrdersCreateRequest();
+    const request = new paypal.orders.OrdersCaptureRequest(orderID);
     request.prefer("return=representation");
-    request.requestBody({
-      intent: 'CAPTURE',
-      purchase_units: [{
-        amount: {
-          currency_code: 'USD',
-          value: value
-        },
-        description: description
-      }]
-    });
+    request.requestBody({});
 
-    const order = await client().execute(request);
-    res.status(200).json({ id: order.result.id });
+    const capture = await client().execute(request);
+    
+    const captureResult = capture.result;
+    const purchaseUnit = captureResult.purchase_units[0];
+    const payer = captureResult.payer;
+    
+    // Store transaction details (in production, save to database)
+    const transactionData = {
+      id: captureResult.id,
+      status: captureResult.status,
+      create_time: captureResult.create_time,
+      update_time: captureResult.update_time,
+      amount: purchaseUnit.amount,
+      description: purchaseUnit.description,
+      custom_id: purchaseUnit.custom_id,
+      payer: {
+        name: payer.name,
+        email: payer.email_address,
+        payer_id: payer.payer_id
+      },
+      shipping: purchaseUnit.shipping,
+      links: captureResult.links
+    };
+    
+    transactions.set(captureResult.id, transactionData);
+    
+    console.log('Order captured successfully:', captureResult.id);
+    
+    // Here you would:
+    // 1. Save to your database
+    // 2. Grant user access to the course
+    // 3. Send confirmation email
+    // 4. Update your analytics
+    
+    res.status(200).json({ 
+      success: true, 
+      id: captureResult.id,
+      status: captureResult.status,
+      create_time: captureResult.create_time,
+      amount: purchaseUnit.amount,
+      description: purchaseUnit.description,
+      course_id: purchaseUnit.custom_id,
+      payer: {
+        name: payer.name,
+        email: payer.email_address
+      }
+    });
     
   } catch (err) {
-    console.error('Create order error:', err);
-    res.status(500).json({ error: 'Failed to create order: ' + err.message });
+    console.error('Capture order error:', err);
+    
+    // More specific error handling
+    if (err.statusCode) {
+      res.status(err.statusCode).json({ 
+        error: 'PayPal API error: ' + (err.message || 'Unknown error'),
+        details: err.details
+      });
+    } else {
+      res.status(500).json({ 
+        error: 'Failed to capture order: ' + err.message 
+      });
+    }
   }
 };
