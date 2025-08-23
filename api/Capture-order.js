@@ -32,30 +32,31 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { orderID } = req.body;
+    const { value, description } = req.body;
     
     // Validate input
-    if (!orderID) {
-      return res.status(400).json({ error: 'Missing orderID' });
+    if (!value || !description) {
+      return res.status(400).json({ error: 'Missing value or description' });
     }
 
-    const request = new paypal.orders.OrdersCaptureRequest(orderID);
+    const request = new paypal.orders.OrdersCreateRequest();
     request.prefer("return=representation");
-    request.requestBody({});
-
-    const capture = await client().execute(request);
-    
-    // Here you would save the transaction to a database and grant user access
-    res.status(200).json({ 
-      success: true, 
-      id: capture.result.id,
-      status: capture.result.status,
-      payer: capture.result.payer,
-      details: capture.result
+    request.requestBody({
+      intent: 'CAPTURE',
+      purchase_units: [{
+        amount: {
+          currency_code: 'USD',
+          value: value
+        },
+        description: description
+      }]
     });
+
+    const order = await client().execute(request);
+    res.status(200).json({ id: order.result.id });
     
   } catch (err) {
-    console.error('Capture order error:', err);
-    res.status(500).json({ error: 'Failed to capture order: ' + err.message });
+    console.error('Create order error:', err);
+    res.status(500).json({ error: 'Failed to create order: ' + err.message });
   }
 };
