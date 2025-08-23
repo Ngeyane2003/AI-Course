@@ -32,31 +32,64 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { value, description } = req.body;
+    const { value, description, courseId } = req.body;
     
     // Validate input
-    if (!value || !description) {
-      return res.status(400).json({ error: 'Missing value or description' });
+    if (!value || isNaN(parseFloat(value))) {
+      return res.status(400).json({ error: 'Valid numeric value is required' });
+    }
+
+    if (!description) {
+      return res.status(400).json({ error: 'Description is required' });
     }
 
     const request = new paypal.orders.OrdersCreateRequest();
     request.prefer("return=representation");
-    request.requestBody({
+    
+    const requestBody = {
       intent: 'CAPTURE',
       purchase_units: [{
         amount: {
           currency_code: 'USD',
-          value: value
+          value: parseFloat(value).toFixed(2)
         },
-        description: description
-      }]
-    });
+        description: description,
+        custom_id: courseId || 'ai-course' // Store course ID for reference
+      }],
+      application_context: {
+        brand_name: "Learn & Earn AI",
+        landing_page: "BILLING",
+        user_action: "PAY_NOW",
+        return_url: `${req.headers.origin}/success`,
+        cancel_url: `${req.headers.origin}/courses`
+      }
+    };
+
+    request.requestBody(requestBody);
 
     const order = await client().execute(request);
-    res.status(200).json({ id: order.result.id });
+    
+    console.log('Order created successfully:', order.result.id);
+    
+    res.status(200).json({ 
+      id: order.result.id,
+      status: order.result.status,
+      create_time: order.result.create_time
+    });
     
   } catch (err) {
     console.error('Create order error:', err);
-    res.status(500).json({ error: 'Failed to create order: ' + err.message });
+    
+    // More specific error handling
+    if (err.statusCode) {
+      res.status(err.statusCode).json({ 
+        error: 'PayPal API error: ' + (err.message || 'Unknown error'),
+        details: err.details
+      });
+    } else {
+      res.status(500).json({ 
+        error: 'Failed to create order: ' + err.message 
+      });
+    }
   }
 };
